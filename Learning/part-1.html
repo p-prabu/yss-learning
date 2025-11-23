@@ -28,7 +28,7 @@
         .hand {
             transform-origin: bottom center;
             transition: transform 0.1s linear;
-            box-shadow: 0 0 10px 2px rgba(253, 224, 71, 0.6);
+            box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.25);
         }
         .hand::after {
             content: '';
@@ -36,12 +36,118 @@
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background-color: #fcd34d;
-            border-radius: 50%;
-            box-shadow: 0 0 8px 2px rgba(253, 224, 71, 0.8);
+            width: 0;
+            height: 0;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-bottom: 10px solid #dc2626; /* red tip */
+            filter: drop-shadow(0 0 4px rgba(220, 38, 38, 0.35));
         }
+        .tick-ring {
+            background: repeating-conic-gradient(
+                #e5e7eb 0deg 1deg,
+                transparent 1deg 5.538deg
+            );
+            opacity: 0.55;
+        }
+        .breath-face {
+            width: clamp(11rem, 32vw, 17rem);
+            height: clamp(11rem, 32vw, 17rem);
+        }
+        .breath-core {
+            width: 70%;
+            height: 70%;
+        }
+        #breath-timer-display {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+        #breath-phase-label {
+            font-size: clamp(0.6rem, 2vw, 0.7rem);
+        }
+        .wake-active {
+            background-color: #dcfce7 !important;
+            color: #166534 !important;
+            box-shadow: 0 0 0 2px #bbf7d0 inset !important;
+        }
+        .second-indicator {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            width: 1.5px;
+            height: 46%;
+            background: linear-gradient(to top, rgba(37,99,235,0.05), rgba(37,99,235,0.85));
+            transform-origin: bottom center;
+            border-radius: 9999px;
+            box-shadow: 0 0 4px rgba(37,99,235,0.45);
+            pointer-events: none;
+        }
+        .second-indicator::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 8px solid rgba(37,99,235,0.95);
+            filter: drop-shadow(0 0 3px rgba(37,99,235,0.35));
+        }
+        #breath-timer-card {
+            background: radial-gradient(circle at 30% 30%, #f9fafb 0%, #eef2ff 55%, #e5e7eb 100%);
+            border-color: #e5e7eb;
+        }
+        /* Night theme for breathing timer */
+        .breath-night {
+            background: radial-gradient(circle at 30% 30%, #0f172a 0%, #111827 55%, #0b1220 100%) !important;
+            border-color: #1f2937 !important;
+        }
+        .breath-night .breath-core {
+            background: #0b1220 !important;
+            color: #e5e7eb !important;
+        }
+        .breath-night #breath-timer-display,
+        .breath-night #breath-phase-label {
+            color: #e5e7eb !important;
+        }
+        .breath-night .tick-ring {
+            background: repeating-conic-gradient(
+                #1f2937 0deg 1deg,
+                transparent 1deg 5.538deg
+            );
+            opacity: 0.65;
+        }
+        .breath-night .second-indicator {
+            background: linear-gradient(to top, rgba(239,68,68,0.08), rgba(239,68,68,0.9));
+            box-shadow: 0 0 6px rgba(239,68,68,0.45);
+        }
+        .breath-night .second-indicator::after {
+            border-bottom-color: rgba(239,68,68,0.95);
+            filter: drop-shadow(0 0 4px rgba(239,68,68,0.4));
+        }
+        /* Meditation card styling */
+        #med-card {
+            background: radial-gradient(circle at 25% 20%, #e0f2fe 0%, #bfdbfe 45%, #fef3c7 90%);
+            border-color: #dbeafe;
+            color: #0f172a;
+        }
+        #med-phase-display { color: #1f2937; }
+        #med-timer-display { color: #0f172a; }
+        #med-progress { background-color: #3b82f6; }
+        #med-card .bg-indigo-800 { background-color: #dbeafe; }
+        #med-wave { display: none; }
+        .med-night {
+            background: radial-gradient(circle at 25% 25%, #0b1220 0%, #0f172a 55%, #0b1220 100%);
+            border-color: #1f2937;
+            color: #e5e7eb;
+        }
+        .med-night #med-phase-display { color: #e5e7eb; }
+        .med-night #med-timer-display { color: #f8fafc; }
+        .med-night #med-progress { background-color: #818cf8; }
+        .med-night .bg-indigo-800 { background-color: #0f172a; }
+        /* Meditation phase backgrounds */
+        #med-card.med-warm { background: radial-gradient(circle at 20% 15%, #fef9c3 0%, #fde68a 45%, #fef3c7 90%); color: #1f2937; }
+        #med-card.med-active { background: radial-gradient(circle at 25% 20%, #e0f2fe 0%, #bfdbfe 45%, #dbeafe 90%); color: #0f172a; }
+        #med-card.med-silence { background: radial-gradient(circle at 20% 20%, #d1fae5 0%, #a7f3d0 50%, #d1fae5 95%); color: #064e3b; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -183,15 +289,17 @@
                         </div>
 
                         <!-- Breathing Timer -->
-                        <div class="flex flex-col items-center justify-center bg-gray-50 p-6 rounded-xl border border-gray-200">
-                            <div class="relative w-48 h-48 rounded-full clock-face shadow-lg border-4 border-white flex items-center justify-center">
-                                <div class="absolute w-36 h-36 bg-white rounded-full z-10 flex flex-col items-center justify-center shadow-inner">
+                        <div id="breath-timer-card" class="flex flex-col items-center justify-center bg-gray-50 p-6 rounded-xl border border-gray-200">
+                            <div class="relative rounded-full clock-face shadow-lg border-4 border-slate-100 flex items-center justify-center breath-face">
+                                <div class="absolute inset-1 rounded-full tick-ring pointer-events-none"></div>
+                                <div id="breath-indicator" class="second-indicator"></div>
+                                <div class="absolute bg-white rounded-full z-10 flex flex-col items-center justify-center shadow-inner breath-core">
                                     <span id="breath-timer-display" class="text-2xl font-bold font-mono text-gray-700">00</span>
                                     <span class="text-xs text-gray-400 uppercase">Sec</span>
                                     <span id="breath-phase-label" class="text-[10px] font-bold text-blue-500 mt-1">START</span>
                                 </div>
-                                <div id="breath-clock-hand" class="hand absolute bottom-1/2 left-1/2 w-1.5 h-20 bg-gradient-to-t from-yellow-600 to-yellow-300 rounded-full z-20 origin-bottom -ml-0.75"></div>
-                                <div class="absolute w-4 h-4 bg-yellow-600 rounded-full z-30 border-2 border-white"></div>
+                                <div id="breath-clock-hand" class="hand absolute bottom-1/2 left-1/2 w-0.5 h-20 bg-gradient-to-t from-red-700 to-red-400 rounded-full z-20 origin-bottom -ml-[1px]"></div>
+                                <div class="absolute w-4 h-4 bg-red-700 rounded-full z-30 border-2 border-white"></div>
                             </div>
                             <div class="mt-4 flex items-center gap-4">
                                 <button onclick="toggleBreathMute()" id="breath-mute-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-3 shadow transition">
@@ -199,6 +307,15 @@
                                 </button>
                                 <button onclick="toggleBreathTimer()" id="breath-play-btn" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 shadow transition">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                </button>
+                                <button onclick="toggleBreathTheme()" id="breath-theme-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-3 shadow transition" title="Light / Night theme">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m6.364.636l-1.414 1.414M21 12h-2m-1.636 6.364l-1.414-1.414M12 21v-2m-6.364-.636l1.414-1.414M3 12h2m1.636-6.364l1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z" /></svg>
+                                </button>
+                                <button onclick="toggleWakeLock()" id="breath-wakelock-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-3 shadow transition" title="Keep screen on">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12c0 4.418-4.03 8-9 8-1.594 0-3.087-.366-4.36-1H5l-2 2v-3.337C2.343 16.115 2 14.602 2 13c0-4.418 4.03-8 9-8 1.594 0 3.087.366 4.36 1H19l2-2v3.337c.657 1.548 1 3.061 1 4.663z" /></svg>
+                                </button>
+                                <button onclick="toggleBreathFullscreen()" id="breath-fullscreen-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full p-3 shadow transition" title="Full screen">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V5a1 1 0 011-1h3M4 16v3a1 1 0 001 1h3m8-15h3a1 1 0 011 1v3m-4 8h3a1 1 0 001-1v-3" /></svg>
                                 </button>
                                 <div class="text-center ml-2">
                                     <p class="text-xs text-gray-500">சுற்றுகள்</p>
@@ -263,8 +380,8 @@
                         </div>
 
                         <!-- Right: Advanced Timer UI -->
-                        <div class="flex flex-col items-center justify-center bg-indigo-900 text-white p-6 rounded-xl shadow-lg min-w-[300px] border border-indigo-700 relative overflow-hidden">
-                            <div id="med-pulse" class="absolute inset-0 bg-indigo-500 opacity-0 rounded-xl transition-opacity duration-1000"></div>
+                        <div id="med-card" class="flex flex-col items-center justify-center text-white p-6 rounded-xl shadow-lg min-w-[300px] border relative overflow-hidden">
+                            <div id="med-pulse" class="absolute inset-0 bg-indigo-500 opacity-0 rounded-xl transition-opacity duration-1000 mix-blend-screen"></div>
                             
                             <div class="z-10 text-center w-full">
                                 <div id="med-phase-display" class="text-indigo-300 text-sm font-bold uppercase tracking-widest mb-2">தயார் (Ready)</div>
@@ -280,6 +397,15 @@
                                     </button>
                                     <button onclick="resetMeditation()" class="bg-indigo-700 text-indigo-200 hover:bg-indigo-600 rounded-full p-4 shadow-lg transition" title="Reset">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                                    </button>
+                                    <button onclick="toggleMeditationTheme()" id="med-theme-btn" class="bg-gray-100 text-indigo-900 hover:bg-gray-200 rounded-full p-4 shadow-lg transition" title="Light / Night theme">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m6.364.636l-1.414 1.414M21 12h-2m-1.636 6.364l-1.414-1.414M12 21v-2m-6.364-.636l1.414-1.414M3 12h2m1.636-6.364l1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z" /></svg>
+                                    </button>
+                                    <button onclick="toggleWakeLock()" id="med-wakelock-btn" class="bg-gray-100 text-indigo-900 hover:bg-gray-200 rounded-full p-4 shadow-lg transition" title="Keep screen on">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12c0 4.418-4.03 8-9 8-1.594 0-3.087-.366-4.36-1H5l-2 2v-3.337C2.343 16.115 2 14.602 2 13c0-4.418 4.03-8 9-8 1.594 0 3.087.366 4.36 1H19l2-2v3.337c.657 1.548 1 3.061 1 4.663z" /></svg>
+                                    </button>
+                                    <button onclick="toggleMeditationFullscreen()" id="med-fullscreen-btn" class="bg-gray-100 text-indigo-900 hover:bg-gray-200 rounded-full p-4 shadow-lg transition" title="Full screen">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V5a1 1 0 011-1h3M4 16v3a1 1 0 001 1h3m8-15h3a1 1 0 011 1v3m-4 8h3a1 1 0 001-1v-3" /></svg>
                                     </button>
                                 </div>
                             </div>
@@ -318,6 +444,11 @@
         const breathPlayBtn = document.getElementById('breath-play-btn');
         const breathMuteBtn = document.getElementById('breath-mute-btn');
         const breathHand = document.getElementById('breath-clock-hand');
+        const breathIndicator = document.getElementById('breath-indicator');
+        const breathTimerCard = document.getElementById('breath-timer-card');
+        const breathFullscreenBtn = document.getElementById('breath-fullscreen-btn');
+        const breathThemeBtn = document.getElementById('breath-theme-btn');
+        const breathWakeLockBtn = document.getElementById('breath-wakelock-btn');
         const breathDisplay = document.getElementById('breath-timer-display');
         const breathRoundCounter = document.getElementById('breath-round-counter');
         const breathPhaseLabel = document.getElementById('breath-phase-label');
@@ -358,6 +489,65 @@
                 '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>';
         }
 
+        function toggleBreathTheme() {
+            breathTimerCard.classList.toggle('breath-night');
+            const isNight = breathTimerCard.classList.contains('breath-night');
+            breathThemeBtn.innerHTML = isNight
+                ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m6.364.636l-1.414 1.414M21 12h-2m-1.636 6.364l-1.414-1.414M12 21v-2m-6.364-.636l1.414-1.414M3 12h2m1.636-6.364l1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z" /></svg>';
+        }
+
+        /* Wake Lock (keep screen on) shared for both timers */
+        let wakeLock = null;
+        let wakeLockEnabled = false;
+
+        function updateWakeLockIcons() {
+            const iconOn = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="9" stroke-width="2"/><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" /></svg>';
+            const iconOff = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="9" stroke-width="2"/><line x1="8" y1="8" x2="16" y2="16" stroke-width="2"/><line x1="16" y1="8" x2="8" y2="16" stroke-width="2"/></svg>';
+            [breathWakeLockBtn, typeof medWakeLockBtn !== 'undefined' ? medWakeLockBtn : null].forEach(btn => {
+                if (!btn) return;
+                btn.innerHTML = wakeLockEnabled ? iconOn : iconOff;
+                if (wakeLockEnabled) btn.classList.add('wake-active');
+                else btn.classList.remove('wake-active');
+            });
+        }
+
+        async function requestWakeLock() {
+            if (!('wakeLock' in navigator)) {
+                alert('Screen wake lock is not supported on this device/browser.');
+                return;
+            }
+            try {
+                wakeLock = await navigator.wakeLock.request('screen');
+                wakeLockEnabled = true;
+                updateWakeLockIcons();
+                wakeLock.addEventListener('release', () => {
+                    wakeLockEnabled = false;
+                    updateWakeLockIcons();
+                });
+            } catch (err) {
+                console.warn('Wake lock request failed', err);
+                alert('Unable to keep the screen awake: ' + (err.message || err));
+            }
+        }
+
+        function releaseWakeLock() {
+            if (wakeLock) {
+                wakeLock.release();
+                wakeLock = null;
+            }
+            wakeLockEnabled = false;
+            updateWakeLockIcons();
+        }
+
+        function toggleWakeLock() {
+            if (wakeLockEnabled) {
+                releaseWakeLock();
+            } else {
+                requestWakeLock();
+            }
+        }
+
         function updateBreathPhase(seconds) {
             let cycle = seconds % 65;
             if (cycle === 0 && seconds > 0) cycle = 65;
@@ -383,6 +573,7 @@
                     updateBreathPhase(breathElapsedSeconds);
                     const rotation = breathElapsedSeconds * (360 / 65);
                     breathHand.style.transform = `rotate(${rotation}deg)`;
+                    breathIndicator.style.transform = `rotate(${rotation}deg)`;
                     let displayTime = breathElapsedSeconds % 65;
                     if (displayTime === 0) displayTime = 65;
                     breathDisplay.innerText = displayTime.toString().padStart(2, '0');
@@ -397,18 +588,48 @@
             }
         }
 
+        // Fullscreen toggle for breathing timer
+        function updateBreathFullscreenIcon() {
+            const isFs = document.fullscreenElement === breathTimerCard || document.webkitFullscreenElement === breathTimerCard;
+            breathFullscreenBtn.innerHTML = isFs
+                ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9H5a1 1 0 01-1-1V4m0 16v-4a1 1 0 011-1h4m6 6v-4a1 1 0 011-1h4m0-6h-4a1 1 0 01-1-1V4" /></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V5a1 1 0 011-1h3M4 16v3a1 1 0 001 1h3m8-15h3a1 1 0 011 1v3m-4 8h3a1 1 0 001-1v-3" /></svg>';
+        }
+
+        function toggleBreathFullscreen() {
+            const el = breathTimerCard;
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+        }
+
+        document.addEventListener('fullscreenchange', updateBreathFullscreenIcon);
+        document.addEventListener('webkitfullscreenchange', updateBreathFullscreenIcon);
+
         /* ---------------- MEDITATION TIMER LOGIC ---------------- */
         let medInterval;
         let medState = 'IDLE'; 
         let medPreviousState = 'IDLE'; // Fixed: Missing variable added
         let medTimeRemaining = 0;
         let medTotalCurrentPhaseTime = 0;
+        function setMedBackground(mode) {
+            medCard.classList.remove('med-warm', 'med-active', 'med-silence');
+            if (mode) medCard.classList.add(mode);
+        }
 
         const medDisplay = document.getElementById('med-timer-display');
         const medPhaseDisplay = document.getElementById('med-phase-display');
         const medPlayBtn = document.getElementById('med-play-btn');
         const medProgress = document.getElementById('med-progress');
         const medPulse = document.getElementById('med-pulse');
+        const medCard = document.getElementById('med-card');
+        const medThemeBtn = document.getElementById('med-theme-btn');
+        const medFullscreenBtn = document.getElementById('med-fullscreen-btn');
+        const medWakeLockBtn = document.getElementById('med-wakelock-btn');
 
         const inputWarmup = document.getElementById('med-warmup');
         const inputDuration = document.getElementById('med-duration');
@@ -466,7 +687,8 @@
                     medTimeRemaining = warmupSecs;
                     medTotalCurrentPhaseTime = warmupSecs;
                     medPhaseDisplay.innerText = "ஆயத்தம் (WARM-UP)";
-                    medPhaseDisplay.className = "text-yellow-300 text-sm font-bold uppercase tracking-widest mb-2";
+                    medPhaseDisplay.className = "text-amber-800 text-sm font-bold uppercase tracking-widest mb-2";
+                    setMedBackground('med-warm');
                     updateMeditationDisplay(); // Immediate Update
                 } else {
                     switchMeditationPhase('MEDITATION');
@@ -478,7 +700,8 @@
                 medTimeRemaining = durMins * 60;
                 medTotalCurrentPhaseTime = medTimeRemaining;
                 medPhaseDisplay.innerText = "தியானம் (MEDITATION)";
-                medPhaseDisplay.className = "text-white text-sm font-bold uppercase tracking-widest mb-2";
+                medPhaseDisplay.className = "text-sky-900 text-sm font-bold uppercase tracking-widest mb-2";
+                setMedBackground('med-active');
                 updateMeditationDisplay(); // Immediate Update
             } 
             else if (medState === 'SILENCE') {
@@ -488,7 +711,8 @@
                     medTimeRemaining = silenceSecs;
                     medTotalCurrentPhaseTime = silenceSecs;
                     medPhaseDisplay.innerText = "நிறைவு அமைதி (SILENCE)";
-                    medPhaseDisplay.className = "text-purple-300 text-sm font-bold uppercase tracking-widest mb-2";
+                    medPhaseDisplay.className = "text-emerald-800 text-sm font-bold uppercase tracking-widest mb-2";
+                    setMedBackground('med-silence');
                     updateMeditationDisplay(); // Immediate Update
                 } else {
                     switchMeditationPhase('END');
@@ -498,6 +722,7 @@
                 playTempleBell();
                 resetMeditation();
                 medPhaseDisplay.innerText = "நிறைவு (COMPLETED)";
+                setMedBackground('');
             }
         }
 
@@ -516,14 +741,14 @@
 
                 medInterval = setInterval(() => {
                     if (medTimeRemaining > 0) {
-                        medTimeRemaining--;
-                        updateMeditationDisplay();
-                    } else {
-                        if (medState === 'WARMUP') switchMeditationPhase('MEDITATION');
-                        else if (medState === 'MEDITATION') switchMeditationPhase('SILENCE');
-                        else if (medState === 'SILENCE') switchMeditationPhase('END');
-                    }
-                }, 1000);
+                    medTimeRemaining--;
+                    updateMeditationDisplay();
+                } else {
+                    if (medState === 'WARMUP') switchMeditationPhase('MEDITATION');
+                    else if (medState === 'MEDITATION') switchMeditationPhase('SILENCE');
+                    else if (medState === 'SILENCE') switchMeditationPhase('END');
+                }
+            }, 1000);
             } else {
                 clearInterval(medInterval);
                 medPreviousState = medState;
@@ -555,6 +780,47 @@
                 medDisplay.innerText = formatTime(parseInt(inputDuration.value) * 60);
             }
         });
+
+        // Theme toggle for meditation card
+        function toggleMeditationTheme() {
+            medCard.classList.toggle('med-night');
+            const isNight = medCard.classList.contains('med-night');
+            medThemeBtn.innerHTML = isNight
+                ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v2m6.364.636l-1.414 1.414M21 12h-2m-1.636 6.364l-1.414-1.414M12 21v-2m-6.364-.636l1.414-1.414M3 12h2m1.636-6.364l1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z" /></svg>';
+        }
+
+        // Fullscreen toggle for meditation timer
+        function updateMeditationFullscreenIcon() {
+            const isFs = document.fullscreenElement === medCard || document.webkitFullscreenElement === medCard;
+            medFullscreenBtn.innerHTML = isFs
+                ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9H5a1 1 0 01-1-1V4m0 16v-4a1 1 0 011-1h4m6 6v-4a1 1 0 011-1h4m0-6h-4a1 1 0 01-1-1V4" /></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V5a1 1 0 011-1h3M4 16v3a1 1 0 001 1h3m8-15h3a1 1 0 011 1v3m-4 8h3a1 1 0 001-1v-3" /></svg>';
+        }
+
+        function toggleMeditationFullscreen() {
+            const el = medCard;
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+        }
+
+        document.addEventListener('fullscreenchange', updateMeditationFullscreenIcon);
+        document.addEventListener('webkitfullscreenchange', updateMeditationFullscreenIcon);
+
+        // Maintain wake lock state across tab visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && wakeLockEnabled) {
+                requestWakeLock();
+            }
+        });
+
+        // Initial icon states
+        updateWakeLockIcons();
     </script>
 </body>
 </html>
