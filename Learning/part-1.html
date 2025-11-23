@@ -148,6 +148,59 @@
         #med-card.med-warm { background: radial-gradient(circle at 20% 15%, #fef9c3 0%, #fde68a 45%, #fef3c7 90%); color: #1f2937; }
         #med-card.med-active { background: radial-gradient(circle at 25% 20%, #e0f2fe 0%, #bfdbfe 45%, #dbeafe 90%); color: #0f172a; }
         #med-card.med-silence { background: radial-gradient(circle at 20% 20%, #d1fae5 0%, #a7f3d0 50%, #d1fae5 95%); color: #064e3b; }
+        /* Light flame meditation */
+        .flame-wrap { position: relative; width: 240px; margin: 0 auto; }
+        .flame-photo {
+            width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+            background: radial-gradient(circle at 50% 20%, rgba(255,182,97,0.35), rgba(0,0,0,0.8));
+        }
+        .flame-layout {}
+        .flame-select {
+            width: 200px;
+            border-radius: 12px;
+            padding: 10px 14px;
+            border: 1px solid rgba(251, 146, 60, 0.35);
+            background: rgba(255, 255, 255, 0.9);
+            color: #7c2d12;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            box-shadow: 0 12px 24px rgba(251, 146, 60, 0.15);
+        }
+        .flame-progress {
+            height: 12px;
+            background: rgba(249, 115, 22, 0.15);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .flame-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #fed7aa, #fb923c);
+            transition: width 0.3s ease;
+        }
+        /* Fullscreen flame view */
+        .flame-only { background: #000 !important; border-color: #111 !important; }
+        .flame-only .flame-layout {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-align: center;
+        }
+        .flame-only .flame-select-row { display: none !important; }
+        .flame-only .flame-controls { display: none !important; }
+        .flame-only .flame-timer-box {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            max-width: 320px;
+            width: 100%;
+        }
+        .flame-only .flame-timer-box .flame-progress { opacity: 0.7; }
     </style>
 </head>
 <body class="text-gray-800">
@@ -417,9 +470,148 @@
                 <div class="bg-white rounded-xl shadow p-6 border-t-4 border-gray-400 md:col-span-2 text-center">
                     <h3 class="text-lg font-bold text-gray-800 mb-2">நிறைவு</h3>
                     <p class="text-sm text-gray-700">இறைவனுக்கான ஓர் இதயங்கனிந்த நன்றியுடன் தியானத்தை நிறைவு செய்யவும்.</p>
+                    <div class="mt-4 flex justify-center">
+                        <img src="../asset/image copy.png" alt="Closing gratitude" class="max-w-xs rounded-lg shadow-md border border-gray-200">
+                    </div>
                 </div>
 
             </div>
+        </section>
+
+        <!-- Light Flame Meditation (Final) -->
+        <section id="flame-meditation" class="relative overflow-hidden rounded-2xl shadow-lg p-8 border border-orange-300 bg-gradient-to-b from-slate-950 via-slate-900 to-black text-orange-50">
+            <div class="flex flex-col lg:flex-row items-center gap-10 flame-layout">
+                <div class="flex-1 text-center">
+                    <div class="flame-wrap">
+                        <img src="../asset/candle-1823.gif" alt="Candle flame" id="live-flame" class="flame-photo">
+                    </div>
+                </div>
+                <div class="flex-1 w-full space-y-4 flame-panel">
+                    <div class="flex items-center gap-3 flex-wrap flame-select-row">
+                        <select id="flame-duration-select" class="flame-select">
+                            <option value="">--</option>
+                            <option value="3">3 நிமிடம்</option>
+                            <option value="5">5 நிமிடம்</option>
+                            <option value="7">7 நிமிடம்</option>
+                            <option value="10">10 நிமிடம்</option>
+                            <option value="15">15 நிமிடம்</option>
+                            <option value="20">20 நிமிடம்</option>
+                        </select>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-4 shadow border border-orange-500/40 space-y-3 flame-timer-box">
+                        <div class="flex items-center justify-between gap-4 flex-wrap">
+                            <div>
+                                <div id="flame-timer-display" class="text-4xl font-mono font-bold text-amber-200 tabular-nums">00:00</div>
+                            </div>
+                            <div class="flex items-center gap-2 flame-controls">
+                                <button id="flame-fullscreen-btn" class="px-3 py-2 rounded-lg bg-orange-500 text-white hover:bg-orange-400 shadow-md transition" title="Maximize">⤢</button>
+                                <button id="flame-reset-btn" class="px-4 py-2 rounded-lg bg-orange-600 text-white hover:bg-orange-500 shadow-md transition">Reset</button>
+                            </div>
+                        </div>
+                        <div class="flame-progress">
+                            <div id="flame-progress-bar" class="flame-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ego vs Soul Card -->
+        <section class="mt-8">
+            <div class="relative overflow-hidden rounded-2xl shadow-xl border border-purple-200 bg-gradient-to-br from-purple-50 via-white to-amber-50">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-purple-200/40 rounded-full blur-3xl"></div>
+                <div class="absolute -left-16 bottom-0 w-52 h-52 bg-amber-200/30 rounded-full blur-3xl"></div>
+                <div class="relative p-8 md:p-10 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-orange-400 text-white flex items-center justify-center text-2xl shadow-lg">🎭</div>
+                            <h3 class="text-2xl font-bold text-gray-900">ஆன்மாவிற்கு எதிராக அகந்தை</h3>
+                        </div>
+                        <span class="text-sm font-semibold text-purple-700 bg-purple-100 px-3 py-1 rounded-full">பகவத் கீதை (பகவான் கிருஷ்ணன்)</span>
+                    </div>
+                    <p class="text-gray-800 leading-relaxed">
+                        ஆன்மா, பூத உடலுடனும் அதன் குறைபாடுள்ள புலனுணர்வுக் கருவிகளுடனும் அடையாளப்படுத்திக் கொண்டு மனித அகந்தை ஆகிறது. மாயையின் மூலம் மாறாத அமரத்துவ ஆன்மா, மாற்றத்துடனும் அழிவுடனும் தன்னையே அடையாளப்படுத்திக் கொள்கிறது.
+                    </p>
+                    <div class="bg-white/70 border border-purple-100 rounded-xl p-5 shadow-sm">
+                        <p class="text-gray-900 leading-relaxed">
+                            அனைத்து உண்மையான ஆன்மீக போதனைகளின் நோக்கம், அகந்தை மற்றும் அதன் தவறான மனப்பான்மைகளைக் கடந்து, ஆன்ம உணர்வுநிலையின் இழந்த சொர்க்கத்தை மீண்டும் பெறுவதே ஆகும். நாம் பரம்பொருளுடன் ஒன்றாகி இருக்கிறோம் என்பதை அறிவதற்கான தலைசிறந்த வழி தியானமாகும்.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infographic: Self-Mastery Path -->
+        <section class="mt-10">
+            <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl shadow-xl border border-slate-700 p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-2xl">🧭</div>
+                    <h3 class="text-2xl font-bold">சுய-வல்லமை அடையும் வழிமுறை</h3>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5 shadow-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">🧠</span>
+                            <p class="text-lg font-semibold">மனக் கட்டுப்பாடு</p>
+                        </div>
+                        <p class="text-sm text-slate-100 leading-relaxed">உடலை ஒருமுகப்பட்ட மனம், இச்சா சக்தி மற்றும் பகுத்தறியும் விவேகம் ஆகியவற்றின் கட்டுப்பாட்டின் கீழ் கொண்டு வருதல்.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5 shadow-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">👑</span>
+                            <p class="text-lg font-semibold">உண்மையான பேரரசர்</p>
+                        </div>
+                        <p class="text-sm text-slate-100 leading-relaxed">தவறாக வழிகாட்டப்பட்ட மனத் திறன்களை, தெய்வீக ஞானம் மற்றும் அன்பு கொண்ட ஆன்மாவின் (பேரரசரின்) ஆட்சியின் கீழ் கொண்டு வருதல்.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-5 shadow-md">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">🌌</span>
+                            <p class="text-lg font-semibold">தெய்வீக ஐக்கியம்</p>
+                        </div>
+                        <p class="text-sm text-slate-100 leading-relaxed">தனிப்படுத்தப்பட்ட ஆன்மாவை, அனைத்துப் படைப்புகளிலும் ஊடுருவியிருக்கும் எல்லையற்ற சர்வவியாபகப் பரம்பொருளுடன் ஐக்கியமாக்குதல்.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infographic: Three Bodies -->
+        <section class="mt-10">
+            <div class="bg-[#0f172a] text-white rounded-2xl shadow-2xl border border-slate-800 p-8 md:p-10">
+                <div class="text-center mb-8 space-y-2">
+                    <h3 class="text-3xl md:text-4xl font-bold text-amber-300">மனிதனின் மூன்று உடல்கள்</h3>
+                    <p class="text-slate-200">ஆன்மா எனும் ஒளிக்கதிர் மூன்று உறைகளால் மூடப்பட்டுள்ளது</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="relative rounded-2xl bg-slate-900 border border-amber-200/30 shadow-[0_25px_60px_rgba(251,191,36,0.2)] p-6 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-amber-400 flex items-center justify-center text-2xl mb-3">✨</div>
+                        <p class="text-xl font-bold text-amber-200 mb-1">1. காரண உடல்</p>
+                        <p class="text-sm text-amber-100 mb-2">(Causal Body)</p>
+                        <p class="text-sm text-slate-100 leading-relaxed">பேரின்பத்தாலும் தூய உள்ளுணர்வு-உணர்வுநிலையாலும் ஆனது. இதுவே ஆன்மாவின் முதல் உறை.</p>
+                    </div>
+                    <div class="relative rounded-2xl bg-slate-900 border border-blue-200/30 shadow-[0_25px_60px_rgba(59,130,246,0.18)] p-6 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-blue-500 flex items-center justify-center text-2xl mb-3">⚡</div>
+                        <p class="text-xl font-bold text-blue-100 mb-1">2. சூட்சும உடல்</p>
+                        <p class="text-sm text-blue-100/80 mb-2">(Astral Body)</p>
+                        <p class="text-sm text-slate-100 leading-relaxed">மனம், அறிவு மற்றும் பிராணன் (உயிர்ச்சக்தி) ஆகியவற்றால் ஆனது. அழியாத ஒளி வடிவம்.</p>
+                    </div>
+                    <div class="relative rounded-2xl bg-slate-900 border border-rose-200/30 shadow-[0_25px_60px_rgba(244,63,94,0.18)] p-6 flex flex-col items-center text-center">
+                        <div class="w-14 h-14 rounded-full bg-rose-500 flex items-center justify-center text-2xl mb-3">🧘</div>
+                        <p class="text-xl font-bold text-rose-100 mb-1">3. பூத உடல்</p>
+                        <p class="text-sm text-rose-100/80 mb-2">(Physical Body)</p>
+                        <p class="text-sm text-slate-100 leading-relaxed">அழியும் பொருட்களால் ஆனது. தசை மற்றும் எலும்புகளைக் கொண்ட தற்போதைய வடிவம்.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing Note -->
+        <section class="mt-10 bg-white rounded-2xl shadow p-6 border border-gray-200">
+            <p class="text-lg text-gray-800 leading-relaxed">
+                <strong>கதை:</strong> ஓர் அரசனை தன் ஆன்மீக வழிகாட்டியாகத் தேர்ந்தெடுத்த ஒரு மகான் இறைவனின் இருப்பை அகமுகமாக உணர்ந்த வண்ணம், எல்லா முறையான வெளிப்புறக் கடமைகளையும் நிறைவேற்றுவதே வாழ்வதற்கான சிறந்த வழியாகும் — நீடித்த மகிழ்ச்சிக்கான வழி.
+            </p>
+            <p class="mt-4 text-sm text-gray-700">
+                இன்று உங்கள் முக்கியப் பணிகளை எழுதிக் குறிப்பிடுங்கள்; அவற்றை நிறைவேற்றி “வெளிப்புறக் கடமைகளையும் நிறைவேற்றுவதே” என்ற பாடத்தைச் செய்து காண்போம்.
+            </p>
         </section>
 
     </main>
@@ -432,6 +624,99 @@
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
         }
+
+        /* ---------------- LIGHT FLAME TIMER ---------------- */
+        const flameSelect = document.getElementById('flame-duration-select');
+        const flameDisplay = document.getElementById('flame-timer-display');
+        const flameProgressBar = document.getElementById('flame-progress-bar');
+        const flameResetBtn = document.getElementById('flame-reset-btn');
+        const flameFullscreenBtn = document.getElementById('flame-fullscreen-btn');
+        const flameSection = document.getElementById('flame-meditation');
+        const flameCore = document.getElementById('live-flame');
+        let flameInterval;
+        let flameTotalSeconds = 0;
+        let flameRemainingSeconds = 0;
+
+        function formatFlame(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function updateFlameUI() {
+            flameDisplay.innerText = formatFlame(flameRemainingSeconds);
+            if (flameTotalSeconds > 0) {
+                const pct = ((flameTotalSeconds - flameRemainingSeconds) / flameTotalSeconds) * 100;
+                flameProgressBar.style.width = `${pct}%`;
+            } else {
+                flameProgressBar.style.width = '0%';
+            }
+        }
+
+        function startFlameTimer(minutes) {
+            clearInterval(flameInterval);
+            flameTotalSeconds = minutes * 60;
+            flameRemainingSeconds = flameTotalSeconds;
+            flameSelect.value = minutes.toString();
+            flameCore.style.animationPlayState = 'running';
+            updateFlameUI();
+
+            flameInterval = setInterval(() => {
+                flameRemainingSeconds -= 1;
+                if (flameRemainingSeconds <= 0) {
+                    clearInterval(flameInterval);
+                    flameRemainingSeconds = 0;
+                    flameCore.style.animationPlayState = 'paused';
+                    updateFlameUI();
+                    return;
+                }
+                updateFlameUI();
+            }, 1000);
+        }
+
+        function resetFlameTimer() {
+            clearInterval(flameInterval);
+            flameTotalSeconds = 0;
+            flameRemainingSeconds = 0;
+            if (flameSelect) flameSelect.value = "";
+            flameCore.style.animationPlayState = 'running';
+            updateFlameUI();
+        }
+
+        if (flameSelect) {
+            flameSelect.addEventListener('change', (e) => {
+                const minutes = Number(e.target.value);
+                if (minutes) startFlameTimer(minutes);
+            });
+        }
+        flameResetBtn.addEventListener('click', resetFlameTimer);
+
+        // Fullscreen toggle for flame
+        function updateFlameFullscreenIcon() {
+            const isFs = document.fullscreenElement === flameSection || document.webkitFullscreenElement === flameSection;
+            flameFullscreenBtn.textContent = '⤢';
+            if (isFs) {
+                flameSection.classList.add('flame-only');
+            } else {
+                flameSection.classList.remove('flame-only');
+            }
+        }
+
+        function toggleFlameFullscreen() {
+            const el = flameSection;
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+        }
+        flameFullscreenBtn.addEventListener('click', toggleFlameFullscreen);
+        document.addEventListener('fullscreenchange', updateFlameFullscreenIcon);
+        document.addEventListener('webkitfullscreenchange', updateFlameFullscreenIcon);
+
+        resetFlameTimer();
 
         /* ---------------- BREATHING TIMER LOGIC ---------------- */
         let breathIsPlaying = false;
