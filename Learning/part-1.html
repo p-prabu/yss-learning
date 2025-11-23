@@ -324,18 +324,31 @@
 
         function playSoftTick() {
             if (breathIsMuted || !audioCtx) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
-            gain.gain.setValueAtTime(0, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.01);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.1);
+            const now = audioCtx.currentTime;
+            const master = audioCtx.createGain();
+            master.gain.setValueAtTime(0.25, now);
+            master.connect(audioCtx.destination);
+
+            // Heartbeat: soft double-thump (lub-dub)
+            function thump(startOffset, baseFreq) {
+                const osc = audioCtx.createOscillator();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(baseFreq, now + startOffset);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.8, now + startOffset + 0.08);
+
+                const gain = audioCtx.createGain();
+                gain.gain.setValueAtTime(0, now + startOffset);
+                gain.gain.linearRampToValueAtTime(0.05, now + startOffset + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + startOffset + 0.35);
+
+                osc.connect(gain);
+                gain.connect(master);
+                osc.start(now + startOffset);
+                osc.stop(now + startOffset + 0.4);
+            }
+
+            thump(0, 90);     // lub
+            thump(0.18, 110); // dub
         }
 
         function toggleBreathMute() {
@@ -362,12 +375,11 @@
             breathIsPlaying = !breathIsPlaying;
             if (breathIsPlaying) {
                 breathPlayBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>';
-                playSoftTick();
                 updateBreathPhase(breathElapsedSeconds);
                 
                 breathInterval = setInterval(() => {
                     breathElapsedSeconds++;
-                    playSoftTick();
+                    if (breathElapsedSeconds % 2 === 0) playSoftTick(); // sound every 2 seconds
                     updateBreathPhase(breathElapsedSeconds);
                     const rotation = breathElapsedSeconds * (360 / 65);
                     breathHand.style.transform = `rotate(${rotation}deg)`;
