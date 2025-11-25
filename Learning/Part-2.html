@@ -3,75 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>பதஞ்சலியின் அஷ்டாங்க யோகம்</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Patanjali Yoga - The Complete Path</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'zen-cream': '#FDFCF8',
+                        'zen-dark': '#2D3748',
+                        'zen-green': '#2F855A',
+                        'zen-terra': '#C05621',
+                        'zen-gold': '#D69E2E',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', '"Noto Sans Tamil"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --bg: #0b1021;
+        body {
+            background-color: #FDFCF8;
+            color: #2D3748;
         }
-        body { margin: 0; background: #000; color: #f8fafc; min-height: 100vh; font-family: "Helvetica Neue", Arial, sans-serif; }
-        .hero {
-            position: relative;
-            min-height: 100vh;
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #E2E8F0;
+            z-index: 0;
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FDFCF8; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A0AEC0; }
+
+        /* Ladder Infographic Styles */
+        .ladder-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            padding: 40px 20px;
-        }
-        .hero::before { content: ""; position: absolute; inset: 0; background: url("../asset/moonstill.png") center/cover no-repeat; z-index: 1; }
-        .hero-content {
+            margin-bottom: 3rem;
             position: relative;
-            z-index: 3;
-            max-width: 720px;
         }
-        .eyebrow {
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            color: #c7d2fe;
-        }
-        h1 {
-            font-size: clamp(2.4rem, 4vw, 3.4rem);
-            font-weight: 800;
-            margin: 16px 0 12px;
-            color: #e0f2fe;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.55);
-        }
-        p.lead {
-            color: #e2e8f0;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 28px;
-        }
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 18px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.08);
-            color: #fff;
+        .ladder-step {
+            background-color: #fff;
+            border: 2px solid #E2E8F0;
+            border-radius: 9999px;
+            padding: 0.75rem 2rem;
             font-weight: 600;
-            margin: 6px;
-            backdrop-filter: blur(6px);
+            color: #2D3748;
+            text-align: center;
+            width: 100%;
+            max-width: 280px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        .ladder-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .ladder-step.final {
+            background-color: #D69E2E;
+            border-color: #D69E2E;
+            color: white;
+        }
+        .ladder-connector {
+            width: 4px;
+            background-color: #E2E8F0;
+            height: 1.5rem;
+            margin: -2px auto;
+            position: relative;
+            z-index: 0;
+        }
+        .ladder-connector.final {
+            background-color: #D69E2E;
         }
     </style>
 </head>
-<body>
-    <section class="hero">
-        <div class="hero-content">
-            <div class="eyebrow">பதஞ்சலியின்</div>
-            <h1>அஷ்டாங்க யோகம்</h1>
-            <p class="lead">யமம், நியமம், ஆசனம், பிராணாயாமம், பிரத்யாஹாரம், தரணம், தியானம், சமாதி — உள்ளே நின்று ஒளிர்ந்திடும் அங்கங்கள்.</p>
-            <div>
-                <span class="pill">🕉️ 8 Limbs</span>
-                <span class="pill">🌙 Calm Focus</span>
-                <span class="pill">🧘 Inner Stillness</span>
+<body class="font-sans antialiased selection:bg-zen-green selection:text-white">
+
+    <!-- HERO SECTION -->
+    <header class="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-zen-dark text-white">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-zen-green rounded-full blur-3xl mix-blend-screen"></div>
+            <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-zen-terra rounded-full blur-3xl mix-blend-screen"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <p class="text-zen-gold tracking-[0.2em] uppercase text-sm font-bold mb-4">The Eight Limbs of Yoga</p>
+            <h1 class="font-serif text-5xl md:text-7xl mb-6 leading-tight">பதஞ்சலியின்<br>அஷ்டாங்க யோகம்</h1>
+            <p class="text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed">
+                "யோக சித்த விருத்தி நிரோத" — மனதின் அலைகளை அமைதிப்படுத்தும் கலை.
+            </p>
+        </div>
+    </header>
+
+    <!-- NAVIGATION SWITCHER -->
+    <div class="sticky top-0 z-50 bg-zen-cream/90 backdrop-blur-md border-b border-gray-200 shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-center">
+            <div class="bg-gray-100 p-1.5 rounded-full inline-flex relative">
+                <!-- Gliding Background for Active State (JS handles class toggling) -->
+                <button onclick="switchView('general')" id="btn-general" class="relative z-10 px-6 py-2 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-zen-dark">
+                    பொதுவான கண்ணோட்டம்
+                </button>
+                <button onclick="switchView('practical')" id="btn-practical" class="relative z-10 px-6 py-2 rounded-full text-sm font-bold transition-all duration-300 text-gray-500 hover:text-zen-dark">
+                    நடைமுறைப் பாதை
+                </button>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 py-16 max-w-5xl min-h-screen">
+
+        <!-- ============================================== -->
+        <!-- VIEW 1: GENERAL (Grid Layout) -->
+        <!-- ============================================== -->
+        <div id="view-general" class="block">
+            <div class="text-center mb-8 fade-in" style="animation-delay: 0.1s">
+                <h2 class="font-serif text-4xl text-zen-dark mb-4">8 படிகள் (General)</h2>
+                <div class="w-16 h-1 bg-zen-green mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-500">பாரம்பரிய வரிசை முறை (Traditional Order)</p>
+            </div>
+
+            <!-- General Ladder Infographic -->
+            <div class="ladder-container fade-in" style="animation-delay: 0.15s">
+                <div class="ladder-step final">8. சமாதி (Samadhi)</div>
+                <div class="ladder-connector final"></div>
+                <div class="ladder-step border-purple-600 text-purple-800">7. தியானம் (Dhyana)</div>
+                <div class="ladder-connector bg-purple-300"></div>
+                <div class="ladder-step border-purple-500 text-purple-700">6. தாரணை (Dharana)</div>
+                <div class="ladder-connector bg-purple-300"></div>
+                <div class="ladder-step border-purple-400 text-purple-600">5. பிரத்தியாகாரம் (Pratyahara)</div>
+                <div class="ladder-connector bg-purple-300"></div>
+                <div class="ladder-step border-zen-terra text-zen-terra">4. பிராணாயாமம் (Pranayama)</div>
+                <div class="ladder-connector bg-orange-300"></div>
+                <div class="ladder-step border-zen-terra text-zen-terra">3. ஆசனம் (Asana)</div>
+                <div class="ladder-connector bg-orange-300"></div>
+                <div class="ladder-step border-zen-green text-zen-green">2. நியமம் (Niyama)</div>
+                <div class="ladder-connector bg-green-300"></div>
+                <div class="ladder-step border-zen-green text-zen-green">1. இயமம் (Yama)</div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Group 1: Ethics -->
+                <div class="space-y-6 fade-in" style="animation-delay: 0.2s">
+                    <h3 class="font-serif text-2xl text-zen-green border-b pb-2 border-zen-green/20">1. அஸ்திவாரம்</h3>
+                    
+                    <div class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-3xl">🌱</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase">01</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">இயமம் (Yama)</h4>
+                        <p class="text-sm text-gray-500 mb-3">சமூக ஒழுக்கம் (Social Discipline)</p>
+                        <ul class="text-sm text-gray-700 space-y-2 border-t pt-3 mt-3 border-dashed">
+                            <li class="flex justify-between"><span>1. அகிம்சை</span> <span class="text-gray-400 text-xs">Non-violence</span></li>
+                            <li class="flex justify-between"><span>2. சத்தியம்</span> <span class="text-gray-400 text-xs">Truth</span></li>
+                            <li class="flex justify-between"><span>3. அஸ்தேயம்</span> <span class="text-gray-400 text-xs">Non-stealing</span></li>
+                            <li class="flex justify-between"><span>4. பிரம்மச்சரியம்</span> <span class="text-gray-400 text-xs">Self-control</span></li>
+                            <li class="flex justify-between"><span>5. அபரிக்கிரகம்</span> <span class="text-gray-400 text-xs">Non-greed</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-3xl">🕯️</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase">02</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">நியமம் (Niyama)</h4>
+                        <p class="text-sm text-gray-500 mb-3">சுய ஒழுக்கம் (Personal Discipline)</p>
+                        <ul class="text-sm text-gray-700 space-y-2 border-t pt-3 mt-3 border-dashed">
+                            <li class="flex justify-between"><span>1. சௌசம்</span> <span class="text-gray-400 text-xs">Purity</span></li>
+                            <li class="flex justify-between"><span>2. சந்தோஷம்</span> <span class="text-gray-400 text-xs">Contentment</span></li>
+                            <li class="flex justify-between"><span>3. தவம்</span> <span class="text-gray-400 text-xs">Discipline</span></li>
+                            <li class="flex justify-between"><span>4. சுவாத்தியாயம்</span> <span class="text-gray-400 text-xs">Self-study</span></li>
+                            <li class="flex justify-between"><span>5. ஈஸ்வர பிரணிதானம்</span> <span class="text-gray-400 text-xs">Surrender</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Group 2: Body -->
+                <div class="space-y-6 fade-in" style="animation-delay: 0.3s">
+                    <h3 class="font-serif text-2xl text-zen-terra border-b pb-2 border-zen-terra/20">2. உடல் & மூச்சு</h3>
+                    
+                    <div class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-3xl">🧘</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase">03</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">ஆசனம் (Asana)</h4>
+                        <p class="text-sm text-gray-500 mb-2">உடல் நிலை (Posture)</p>
+                        <div class="bg-orange-50 p-3 rounded text-xs text-orange-800 leading-relaxed">
+                            <strong>"ஸ்திர சுகம் ஆசனம்"</strong><br>
+                            எந்த நிலையில் உடலை அசைக்காமல், சுகமாக நீண்ட நேரம் இருக்க முடிகிறதோ அதுவே ஆசனம். இது தியானத்திற்கு உடலைத் தயார் செய்கிறது.
+                        </div>
+                    </div>
+
+                    <div class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-3xl">💨</span>
+                            <span class="text-xs font-bold text-gray-400 uppercase">04</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">பிராணாயாமம் (Pranayama)</h4>
+                        <p class="text-sm text-gray-500 mb-2">மூச்சுக் கட்டுப்பாடு (Breath Control)</p>
+                         <p class="text-xs text-gray-600">
+                            மூச்சைக் கட்டுப்படுத்துவதன் மூலம் மனதின் ஓட்டத்தை நிறுத்தலாம். இது உடலுக்கும் மனதிற்கும் பாலம்.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Group 3: Mind -->
+                <div class="space-y-6 fade-in" style="animation-delay: 0.4s">
+                    <h3 class="font-serif text-2xl text-purple-800 border-b pb-2 border-purple-800/20">3. உள் பயணம்</h3>
+                    
+                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-100">
+                        <ul class="space-y-4">
+                            <li class="flex gap-3 items-start">
+                                <span class="bg-white w-6 h-6 rounded flex items-center justify-center text-xs font-bold text-purple-600 shadow-sm shrink-0">05</span>
+                                <div>
+                                    <h4 class="font-bold text-sm">பிரத்தியாகாரம்</h4>
+                                    <p class="text-xs text-gray-500">புலன் ஒடுக்கம் (Withdrawal)</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <span class="bg-white w-6 h-6 rounded flex items-center justify-center text-xs font-bold text-purple-600 shadow-sm shrink-0">06</span>
+                                <div>
+                                    <h4 class="font-bold text-sm">தாரணை</h4>
+                                    <p class="text-xs text-gray-500">கவனம் / ஒருமுகப்படுத்தல் (Focus)</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <span class="bg-white w-6 h-6 rounded flex items-center justify-center text-xs font-bold text-purple-600 shadow-sm shrink-0">07</span>
+                                <div>
+                                    <h4 class="font-bold text-sm">தியானம்</h4>
+                                    <p class="text-xs text-gray-500">ஆழ்ந்த சிந்தனை (Meditation)</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-purple-900 to-indigo-900 p-6 rounded-xl text-white shadow-lg transform hover:scale-105 transition duration-300">
+                        <div class="text-center">
+                            <span class="text-4xl mb-2 block">✨</span>
+                            <h4 class="font-serif text-xl font-bold">சமாதி (Samadhi)</h4>
+                            <p class="text-purple-200 text-sm mt-1">பேரானந்தம் / முக்தி நிலை (Bliss)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- VIEW 2: PRACTICAL (Timeline Layout) -->
+        <!-- ============================================== -->
+        <div id="view-practical" class="hidden">
+            
+            <div class="text-center mb-8 fade-in">
+                <span class="bg-zen-terra/10 text-zen-terra px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wide">பரிந்துரைக்கப்படும் பாதை</span>
+                <h2 class="font-serif text-4xl text-zen-dark mt-4 mb-4">நடைமுறைப் பாதை</h2>
+                <div class="w-16 h-1 bg-zen-terra mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-500 max-w-lg mx-auto">
+                    உடல் பயிற்சியில் தொடங்கி (Asana), மனதை ஒருமைப்படுத்தி, இறுதியில் வாழ்வியல் ஒழுக்கத்தை (Yama/Niyama) முழுமையாக அடைதல்.
+                </p>
+            </div>
+
+            <!-- Practical Ladder Infographic -->
+            <div class="ladder-container fade-in" style="animation-delay: 0.15s">
+                <div class="ladder-step final">இறுதி: இயமம் & நியமம் (Yama & Niyama)</div>
+                <div class="ladder-connector final"></div>
+                <div class="ladder-step border-purple-600 text-purple-800">6. சமாதி (Samadhi)</div>
+                <div class="ladder-connector bg-purple-300"></div>
+                <div class="ladder-step border-purple-500 text-purple-700">5. தியானம் (Dhyana)</div>
+                <div class="ladder-connector bg-purple-300"></div>
+                <div class="ladder-step border-purple-400 text-purple-600">4. தாரணை (Dharana)</div>
+                <div class="ladder-connector bg-purple-300"></div>
+                <div class="ladder-step border-purple-400 text-purple-600">3. பிரத்தியாகாரம் (Pratyahara)</div>
+                <div class="ladder-connector bg-orange-300"></div>
+                <div class="ladder-step border-zen-terra text-zen-terra">2. பிராணாயாமம் (Pranayama)</div>
+                <div class="ladder-connector bg-orange-300"></div>
+                <div class="ladder-step border-zen-terra text-zen-terra">1. ஆசனம் (Asana)</div>
+            </div>
+
+            <div class="max-w-3xl mx-auto relative pl-4 md:pl-0">
+                
+                <!-- Timeline Stem -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gray-200 -translate-x-1/2 hidden md:block"></div>
+
+                <!-- STEP 1 -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 fade-in">
+                    <div class="md:w-5/12 order-2 md:order-1 bg-white p-6 rounded-2xl shadow-sm border-l-4 border-zen-terra">
+                        <span class="text-zen-terra font-bold text-xs uppercase tracking-wider mb-2 block">Step 01</span>
+                        <h3 class="font-serif text-2xl font-bold text-gray-800">ஆசனம் (Asana)</h3>
+                        <p class="text-gray-500 text-sm mt-2">முதலில் உடலைத் தயார் செய்யுங்கள். உடல் ஆரோக்கியமாக இருந்தால்தான் மனதை அடக்க முடியும்.</p>
+                    </div>
+                    <div class="order-1 md:order-2 w-10 h-10 bg-zen-terra rounded-full border-4 border-white shadow-md z-10 flex items-center justify-center text-white font-bold text-sm mb-4 md:mb-0">1</div>
+                    <div class="md:w-5/12 order-3 md:order-3 md:text-left pl-8 md:pl-0">
+                        <!-- Spacer for balance -->
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 fade-in" style="animation-delay: 0.1s">
+                    <div class="md:w-5/12 order-3 md:order-1"></div>
+                    <div class="order-1 md:order-2 w-10 h-10 bg-zen-terra rounded-full border-4 border-white shadow-md z-10 flex items-center justify-center text-white font-bold text-sm mb-4 md:mb-0">2</div>
+                    <div class="md:w-5/12 order-2 md:order-3 bg-white p-6 rounded-2xl shadow-sm border-r-4 md:border-r-0 md:border-l-4 border-zen-terra">
+                        <span class="text-zen-terra font-bold text-xs uppercase tracking-wider mb-2 block">Step 02</span>
+                        <h3 class="font-serif text-2xl font-bold text-gray-800">பிராணாயாமம்</h3>
+                        <p class="text-gray-500 text-sm mt-2">மூச்சைக் கட்டுப்படுத்துங்கள். மூச்சு சீரானால், மனம் தானாகவே அமைதியாகும்.</p>
+                    </div>
+                </div>
+
+                <!-- STEP 3, 4, 5 (Grouped) -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 fade-in" style="animation-delay: 0.2s">
+                    <div class="md:w-5/12 order-2 md:order-1 bg-white p-6 rounded-2xl shadow-sm border-l-4 border-purple-500">
+                        <span class="text-purple-600 font-bold text-xs uppercase tracking-wider mb-2 block">Steps 03 - 05</span>
+                        <h3 class="font-serif text-xl font-bold text-gray-800">உள் பயணம் (Inner Work)</h3>
+                        <div class="mt-4 space-y-2">
+                            <div class="bg-purple-50 px-3 py-2 rounded text-sm text-purple-900 font-medium">3. பிரத்தியாகாரம் (புலன் ஒடுக்கம்)</div>
+                            <div class="bg-purple-50 px-3 py-2 rounded text-sm text-purple-900 font-medium">4. தாரணை (கவனம்)</div>
+                            <div class="bg-purple-50 px-3 py-2 rounded text-sm text-purple-900 font-medium">5. தியானம் (ஆழ்ந்த நிலை)</div>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 w-10 h-10 bg-purple-500 rounded-full border-4 border-white shadow-md z-10 flex items-center justify-center text-white font-bold text-sm mb-4 md:mb-0">🧠</div>
+                    <div class="md:w-5/12 order-3 md:order-3"></div>
+                </div>
+
+                <!-- STEP 6 -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 fade-in" style="animation-delay: 0.3s">
+                    <div class="md:w-5/12 order-3 md:order-1"></div>
+                    <div class="order-1 md:order-2 w-10 h-10 bg-zen-gold rounded-full border-4 border-white shadow-md z-10 flex items-center justify-center text-white font-bold text-sm mb-4 md:mb-0">★</div>
+                    <div class="md:w-5/12 order-2 md:order-3 bg-zen-dark text-white p-6 rounded-2xl shadow-lg border-l-4 border-zen-gold">
+                        <span class="text-zen-gold font-bold text-xs uppercase tracking-wider mb-2 block">Step 06</span>
+                        <h3 class="font-serif text-2xl font-bold">சமாதி (Samadhi)</h3>
+                        <p class="text-gray-400 text-sm mt-2">முழுமையான தெளிவு மற்றும் பேரானந்தம்.</p>
+                    </div>
+                </div>
+
+                <!-- FINAL INTEGRATION -->
+                <div class="relative flex flex-col items-center justify-center mt-16 fade-in" style="animation-delay: 0.4s">
+                     <div class="bg-green-50 border-2 border-green-200 p-8 rounded-3xl text-center max-w-2xl shadow-sm">
+                        <div class="inline-block p-3 rounded-full bg-green-100 text-green-700 mb-4 text-2xl">🌱</div>
+                        <h3 class="font-serif text-2xl font-bold text-green-800 mb-2">இறுதி ஒருங்கிணைப்பு (Final Integration)</h3>
+                        <h4 class="text-lg font-bold text-gray-700">இயமம் & நியமம் (Yama & Niyama)</h4>
+                        <p class="text-gray-600 mt-3 text-sm leading-relaxed">
+                            உடலையும் மனதையும் வென்ற பிறகு, நல்லொழுக்கம் என்பது கட்டாயமாக இல்லாமல் இயற்கையாகவே வரும். நீங்கள் அகிம்சை, உண்மை மற்றும் ஒழுக்கத்தை இயல்பாகவே கடைபிடிப்பீர்கள்.
+                        </p>
+                     </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-zen-dark text-gray-400 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="font-serif text-2xl text-white mb-4">Patanjali Yoga</h2>
+            <div class="flex justify-center gap-4 mb-8">
+                <span class="w-2 h-2 rounded-full bg-zen-green"></span>
+                <span class="w-2 h-2 rounded-full bg-zen-terra"></span>
+                <span class="w-2 h-2 rounded-full bg-zen-gold"></span>
+            </div>
+            <p class="text-sm">Personal Study Resource • Created with Zen Philosophy</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+        function switchView(viewName) {
+            const generalView = document.getElementById('view-general');
+            const practicalView = document.getElementById('view-practical');
+            const btnGeneral = document.getElementById('btn-general');
+            const btnPractical = document.getElementById('btn-practical');
+
+            if (viewName === 'general') {
+                generalView.classList.remove('hidden');
+                practicalView.classList.add('hidden');
+                
+                // Style Active Button
+                btnGeneral.classList.remove('text-gray-500', 'hover:text-zen-dark');
+                btnGeneral.classList.add('bg-white', 'text-zen-dark', 'shadow-sm');
+                
+                // Style Inactive Button
+                btnPractical.classList.remove('bg-white', 'text-zen-dark', 'shadow-sm');
+                btnPractical.classList.add('text-gray-500', 'hover:text-zen-dark');
+            } else {
+                generalView.classList.add('hidden');
+                practicalView.classList.remove('hidden');
+                
+                // Style Active Button
+                btnPractical.classList.remove('text-gray-500', 'hover:text-zen-dark');
+                btnPractical.classList.add('bg-white', 'text-zen-dark', 'shadow-sm');
+                
+                // Style Inactive Button
+                btnGeneral.classList.remove('bg-white', 'text-zen-dark', 'shadow-sm');
+                btnGeneral.classList.add('text-gray-500', 'hover:text-zen-dark');
+            }
+        }
+    </script>
 </body>
 </html>
