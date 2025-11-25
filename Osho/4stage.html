@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ஓஷோ: 4 படிநிலை தியானம்</title>
+    <style>
+        :root {
+            --primary-color: #d35400; /* Osho Orange/Saffron tone */
+            --secondary-color: #fdf2e9;
+            --text-color: #333;
+            --accent-green: #27ae60;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .intro-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            text-align: center;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .stage-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage-number {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .stage-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .description {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .action-box {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .action-title {
+            font-weight: bold;
+            color: #d35400;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-title::before {
+            content: '✓';
+            margin-right: 8px;
+            background: var(--accent-green);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        ul.checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        ul.checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox-sim {
+            min-width: 20px;
+            height: 20px;
+            border: 2px solid #aaa;
+            border-radius: 4px;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+
+        .final-stage {
+            background: linear-gradient(135deg, #fff 0%, #fff8f0 100%);
+            border: 2px solid var(--primary-color);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 40px;
+        }
+
+        .youtube-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .stage-card { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>தியானத்தின் 4 படிநிலைகள்</h1>
+    <p>உடலும் மனமும் அமைதி அடைய ஓஷோ கூறும் யுக்திகள்</p>
+</header>
+
+<div class="container">
+
+    <div class="intro-box">
+        <p>"உணவு உடலுக்கு மட்டுமே பாயும், ஆனால் எண்ணங்கள் எங்கும் பாயும். பேரானந்தத்தை அடைய விழிப்புணர்வு ஒன்றே வழி."</p>
+    </div>
+
+    <div class="stage-card">
+        <div class="stage-number">1</div>
+        <div class="stage-title">உடல் (The Body)</div>
+        <div class="description">
+            <p>இதுவே முதல் படி. உங்கள் உடலின் அசைவுகள் மற்றும் உள்ளுறுப்புகளை முழு விழிப்புணர்வுடன் கவனிக்க வேண்டும். இதனால் உடலில் உள்ள பதற்றம் மறைந்து ஆழ்ந்த அமைதி கிடைக்கும்.</p>
+        </div>
+        <div class="action-box">
+            <div class="action-title">செயல் திட்டங்கள் (Action Items)</div>
+            <ul class="checklist">
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div>அமைதியாக அமர்ந்து தலை முதல் பாதம் வரை கவனிக்கவும்.</div>
+                </li>
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div>கைகளை அசைக்கும்போதும், நடக்கும்போதும் முழு கவனத்துடன் செயல்படவும்.</div>
+                </li>
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div>உடலின் உள்ளுறுப்புகளின் இயக்கத்தை உணர முயற்சிக்கவும்.</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="stage-card">
+        <div class="stage-number">2</div>
+        <div class="stage-title">எண்ணம் / மனம் (The Mind)</div>
+        <div class="description">
+            <p>உடலைக் கவனித்த பிறகு, எண்ணங்களை கவனிக்க வேண்டும். எண்ணங்கள் உடலை விட ஆபத்தானவை. அவற்றை வெறுமனே சாட்சியாக நின்று கவனிக்க வேண்டும்.</p>
+        </div>
+        <div class="action-box">
+            <div class="action-title">செயல் திட்டங்கள் (Action Items)</div>
+            <ul class="checklist">
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div>ஒரு தனி அறையில் சென்று கதவைப் பூட்டவும்.</div>
+                </li>
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div><strong>10 நிமிடங்கள்:</strong> மனதில் வரும் எண்ணங்களை எவ்வித தயக்கமும் இன்றி ஒரு தாளில் எழுதவும்.</div>
+                </li>
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div>எதையும் மறைக்கவோ, மாற்றவோ வேண்டாம். நேர்மையாக எழுதவும்.</div>
+                </li>
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div><strong>முக்கியம்:</strong> படித்து முடித்த பின், அந்தத் தாளைத் தீயிட்டு எரித்து விடவும்.</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="stage-card">
+        <div class="stage-number">3</div>
+        <div class="stage-title">உணர்வு (Feelings)</div>
+        <div class="description">
+            <p>இது நுட்பமான நிலை. உங்கள் உணர்வுகள், மனக்கிளர்ச்சிகள் (Moods) மற்றும் செண்டிமெண்ட்ஸ் ஆகியவற்றை விழிப்புணர்வுடன் கவனிக்க வேண்டும்.</p>
+        </div>
+        <div class="action-box">
+            <div class="action-title">செயல் திட்டங்கள் (Action Items)</div>
+            <ul class="checklist">
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div>கோபம், கவலை அல்லது மகிழ்ச்சி வரும்போது அதில் அடித்துச் செல்லப்படாமல் அதை கவனிக்கவும்.</div>
+                </li>
+                <li>
+                    <div class="checkbox-sim"></div>
+                    <div>உடல், மனம், உணர்வு மூன்றையும் ஒரே நேர்கோட்டில் இசைக்க விடவும்.</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="stage-card final-stage">
+        <div class="stage-number">4</div>
+        <div class="stage-title">பேரானந்தம் (Bliss)</div>
+        <div class="description">
+            <p>இது நீங்கள் செய்யும் செயல் அல்ல; இது ஒரு விளைவு. முதல் மூன்று நிலைகளைச் சரியாகக் கடந்தவர்களுக்கு இது தானாகவே நிகழும். இதுவே ஞான நிலை.</p>
+        </div>
+        <div class="action-box" style="background-color: #e8f8f5; border-color: #27ae60;">
+            <div class="action-title" style="color: #27ae60;">பலன்கள் (Results)</div>
+            <ul class="checklist">
+                <li>உடல் அறிவது: <strong>சுகம்</strong></li>
+                <li>மனம் அறிவது: <strong>சந்தோஷம்</strong></li>
+                <li>உள்ளம் அறிவது: <strong>மகிழ்ச்சி</strong></li>
+                <li>நான்காம் நிலை: <strong>பேரானந்தம் (Bliss)</strong></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>Source Video: <a href="https://www.youtube.com/watch?v=lY-k4V4vvQc" class="youtube-link" target="_blank">Sinthanai Siragugal - Osho Speech</a></p>
+    <p>Generated by AI Assistant</p>
+</footer>
+
+</body>
+</html>
+```

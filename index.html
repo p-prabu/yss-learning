@@ -12,22 +12,6 @@
             color: white;
             min-height: 100vh;
         }
-        #content {
-            display: none;
-        }
-        #login-form {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        .login-box {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 15px;
-            width: 100%;
-            max-width: 400px;
-        }
         .container {
             padding-top: 40px;
             padding-bottom: 40px;
@@ -57,90 +41,146 @@
             color: #f8f9fa;
             border: none;
         }
+        /* Modern bookshelf styling */
+        .content-shell {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+            padding: 30px;
+        }
+        .shelf-title {
+            letter-spacing: 0.25rem;
+            text-transform: uppercase;
+            color: #e0e7ff;
+            font-size: 0.85rem;
+        }
+        .category-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 18px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        }
+        .book-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+        }
+        .book-card h6 {
+            margin: 0;
+            color: #f8fafc;
+            font-weight: 700;
+        }
+        .book-card p {
+            margin: 4px 0 0;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.92rem;
+        }
+        .badge-pill {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            color: #f8fafc;
+        }
+        .book-link {
+            color: #0f172a;
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .book-link:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
     </style>
 </head>
 <body>
 
-    <div id="login-form">
-        <div class="login-box text-center">
-            <h1 class="mb-4">Login</h1>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="username" placeholder="Username">
-                <label for="username" style="color: #333;">Username</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Password">
-                <label for="password" style="color: #333;">Password</label>
-            </div>
-            <button type="button" class="btn btn-primary btn-lg" onclick="checkPassword()">Login</button>
-            <p id="error-message" class="mt-3" style="color: #ffcccc;"></p>
-        </div>
-    </div>
-
     <div id="content">
-        <div class="container text-center">
-            <h1 class="display-4">Welcome to Your Meditation Journey</h1>
-            <p class="lead">Find your inner peace and tranquility.</p>
-            <hr class="my-4" style="border-color: rgba(255,255,255,0.5);">
-        </div>
-
         <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Part 1: The Basics</h5>
-                            <p class="card-text">An introduction to the fundamental concepts of meditation.</p>
-                            <a href="Learning/part-1.html" class="btn btn-primary mt-auto">Start Part 1</a>
+            <div class="content-shell">
+                <div class="text-center mb-4">
+                    <div class="shelf-title">Library</div>
+                    <h1 class="display-5 fw-bold">Meditation Journeys</h1>
+                    <p class="lead text-light">Curated readings and practices across traditions.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="category-card">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h5 class="mb-0">YSS</h5>
+                                <span class="badge-pill">2 volumes</span>
+                            </div>
+                            <div class="book-card">
+                                <div>
+                                    <h6>Part 1: The Basics</h6>
+                                    <p>Raja Yoga foundations and breath practice.</p>
+                                </div>
+                                <a class="book-link" href="YSS/part-1.html">Open</a>
+                            </div>
+                            <div class="book-card">
+                                <div>
+                                    <h6>Part 2: பதஞ்சலியின் அஷ்டாங்க யோகம்</h6>
+                                    <p>நிலவு நிசப்த பயணம் — 8 limbs in focus.</p>
+                                </div>
+                                <a class="book-link" href="YSS/Part-2.html">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="category-card">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h5 class="mb-0">Osho</h5>
+                                <span class="badge-pill">2 volumes</span>
+                            </div>
+                            <div class="book-card">
+                                <div>
+                                    <h6>4-Stage Meditation</h6>
+                                    <p>Dynamic stages to shake off tension.</p>
+                                </div>
+                                <a class="book-link" href="Osho/4stage.html">Open</a>
+                            </div>
+                            <div class="book-card">
+                                <div>
+                                    <h6>4-Minute Reset</h6>
+                                    <p>Quick practice to center and reset.</p>
+                                </div>
+                                <a class="book-link" href="Osho/4.html">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="category-card">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h5 class="mb-0">Patanjali</h5>
+                                <span class="badge-pill">Coming soon</span>
+                            </div>
+                            <div class="flex-grow-1 d-flex align-items-center justify-content-center text-center text-light opacity-75" style="min-height:120px;">
+                                New readings will appear here.
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Part 2</h5>
-                            <p class="card-text">பதஞ்சலியின் அஷ்டாங்க யோகம் — ஒரு நிலவு நிசப்த பயணம்.</p>
-                            <a href="Learning/Part-2.html" class="btn btn-primary mt-auto">Start Part 2</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Part 3</h5>
-                            <p class="card-text">Coming soon...</p>
-                            <a href="#" class="btn btn-primary disabled mt-auto">Coming Soon</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Part 4</h5>
-                            <p class="card-text">Coming soon...</p>
-                            <a href="#" class="btn btn-primary disabled mt-auto">Coming Soon</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more placeholder cards as needed -->
             </div>
         </div>
     </div>
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function checkPassword() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            if (username === "admin" && password === "admin@admin") {
-                document.getElementById("login-form").style.display = "none";
-                document.getElementById("content").style.display = "block";
-            } else {
-                document.getElementById("error-message").innerText = "Invalid username or password.";
-            }
-        }
-    </script>
 </body>
 </html>
