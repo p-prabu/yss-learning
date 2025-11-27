@@ -201,6 +201,17 @@
             width: 100%;
         }
         .flame-only .flame-timer-box .flame-progress { opacity: 0.7; }
+        /* Simple responsive video embed */
+        .video-embed { position: relative; padding-top: 56.25%; }
+        .video-embed iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -462,6 +473,66 @@
                                     </button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Practice Plan -->
+                <div class="bg-white rounded-xl shadow p-6 border-t-4 border-green-500 md:col-span-2">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">வார அட்டவணை</h3>
+                    <p class="text-sm text-gray-600 mb-4">திங்கள் முதல் ஞாயிறு வரை உங்கள் தியானப் பயிற்சிகளைப் பதிவு செய்யவும்.</p>
+                    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                        <div class="border border-green-200 rounded-lg p-4 bg-green-50 shadow-sm">
+                            <p class="text-sm font-semibold text-green-700 mb-2">திங்கள் (Monday)</p>
+                            <p class="text-sm text-gray-700 mb-3">பயமின்றி வாழ்தல் பற்றிய வழிநடத்தப்பட்ட தியானம்</p>
+                            <div class="video-embed">
+                                <iframe id="video-mon" src="https://www.youtube.com/embed/qZlXeRxQLRY?start=839" allowfullscreen></iframe>
+                            </div>
+                            <button class="mt-3 px-3 py-2 text-xs font-semibold text-green-800 bg-green-100 rounded hover:bg-green-200 video-restart" data-target="video-mon" data-src="https://www.youtube.com/embed/qZlXeRxQLRY?start=839">மீண்டும் தொடங்கு</button>
+                        </div>
+                        <div class="border border-green-200 rounded-lg p-4 bg-green-50 shadow-sm">
+                            <p class="text-sm font-semibold text-green-700 mb-2">செவ்வாய் (Tuesday)</p>
+                            <p class="text-sm text-gray-700 mb-3">வெற்றிக்காக ஓர் அகச்சூழலை உருவாக்குதல்</p>
+                            <div class="video-embed">
+                                <iframe id="video-tue" src="https://www.youtube.com/embed/y2_wCoWaotc" allowfullscreen></iframe>
+                            </div>
+                            <button class="mt-3 px-3 py-2 text-xs font-semibold text-green-800 bg-green-100 rounded hover:bg-green-200 video-restart" data-target="video-tue" data-src="https://www.youtube.com/embed/y2_wCoWaotc">மீண்டும் தொடங்கு</button>
+                        </div>
+                        <div class="border border-green-200 rounded-lg p-4 bg-green-50 shadow-sm">
+                            <p class="text-sm font-semibold text-green-700 mb-2">புதன் (Wednesday)</p>
+                            <p class="text-sm text-gray-700 mb-3">அமைதி</p>
+                            <div class="video-embed">
+                                <iframe id="video-wed" src="https://www.youtube.com/embed/nTcJGu7UHM4" allowfullscreen></iframe>
+                            </div>
+                            <button class="mt-3 px-3 py-2 text-xs font-semibold text-green-800 bg-green-100 rounded hover:bg-green-200 video-restart" data-target="video-wed" data-src="https://www.youtube.com/embed/nTcJGu7UHM4">மீண்டும் தொடங்கு</button>
+                        </div>
+                        <div class="border border-green-200 rounded-lg p-4 bg-green-50 shadow-sm">
+                            <p class="text-sm font-semibold text-green-700 mb-2">வியாழன் (Thursday)</p>
+                            <p class="text-sm text-gray-700 mb-3">உணர்வுநிலையின் விரிவாக்கம்</p>
+                            <div class="video-embed">
+                                <iframe id="video-thu" src="https://www.youtube.com/embed/Si0_Dj1pHwc?start=1" allowfullscreen></iframe>
+                            </div>
+                            <button class="mt-3 px-3 py-2 text-xs font-semibold text-green-800 bg-green-100 rounded hover:bg-green-200 video-restart" data-target="video-thu" data-src="https://www.youtube.com/embed/Si0_Dj1pHwc?start=1">மீண்டும் தொடங்கு</button>
+                        </div>
+                        <div class="border border-green-200 rounded-lg p-4 bg-green-50 shadow-sm">
+                            <p class="text-sm font-semibold text-green-700 mb-2">வெள்ளி (Friday)</p>
+                            <p class="text-sm text-gray-700 mb-3">அன்பை விரிவுபடுத்துதல் பற்றிய வழிநடத்தப்பட்ட தியானம்</p>
+                            <div class="video-embed">
+                                <iframe id="video-fri" src="https://www.youtube.com/embed/GWcMS-t9JKc" allowfullscreen></iframe>
+                            </div>
+                            <button class="mt-3 px-3 py-2 text-xs font-semibold text-green-800 bg-green-100 rounded hover:bg-green-200 video-restart" data-target="video-fri" data-src="https://www.youtube.com/embed/GWcMS-t9JKc">மீண்டும் தொடங்கு</button>
+                        </div>
+                        <div class="border border-green-200 rounded-lg p-4 bg-green-50 shadow-sm">
+                            <p class="text-sm font-semibold text-green-700 mb-2">சனி (Saturday)</p>
+                            <p class="text-sm text-gray-700 mb-3">ஒளியாக இறைவன் பற்றிய வழிநடத்தப்பட்ட தியானம்</p>
+                            <div class="video-embed">
+                                <iframe id="video-sat" src="https://www.youtube.com/embed/S6jJuetwJfs" allowfullscreen></iframe>
+                            </div>
+                            <button class="mt-3 px-3 py-2 text-xs font-semibold text-green-800 bg-green-100 rounded hover:bg-green-200 video-restart" data-target="video-sat" data-src="https://www.youtube.com/embed/S6jJuetwJfs">மீண்டும் தொடங்கு</button>
+                        </div>
+                        <div class="border border-green-100 rounded-lg p-4 bg-white shadow-sm">
+                            <p class="text-sm font-semibold text-gray-700 mb-2">ஞாயிறு (Sunday)</p>
+                            <p class="text-xs text-gray-500">உங்கள் குறிப்புகளைச் சேர்க்கவும்.</p>
                         </div>
                     </div>
                 </div>
@@ -1106,6 +1177,18 @@
 
         // Initial icon states
         updateWakeLockIcons();
+
+        // Restart buttons for embedded videos
+        document.querySelectorAll('.video-restart').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const src = btn.getAttribute('data-src');
+                const iframe = document.getElementById(targetId);
+                if (!iframe || !src) return;
+                iframe.src = ''; // force reload
+                setTimeout(() => { iframe.src = src; }, 20);
+            });
+        });
     </script>
 </body>
 </html>
