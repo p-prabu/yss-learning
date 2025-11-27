@@ -103,9 +103,30 @@
         .ladder-connector.final {
             background-color: #D69E2E;
         }
+        .floating-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2D3748;
+            color: #FDFCF8;
+            border-radius: 999px;
+            padding: 12px 14px;
+            font-weight: 800;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            z-index: 50;
+        }
+        .floating-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+        }
     </style>
 </head>
 <body class="font-sans antialiased selection:bg-zen-green selection:text-white">
+    <a href="../index.html" class="floating-home" aria-label="Home">⌂</a>
 
     <!-- HERO SECTION -->
     <header class="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-zen-dark text-white">

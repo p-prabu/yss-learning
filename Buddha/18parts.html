@@ -61,9 +61,29 @@
             margin-top: 6px;
             color: #e2e8f0;
         }
+        .floating-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #f8fafc;
+            color: #0f172a;
+            border-radius: 999px;
+            padding: 12px 14px;
+            font-weight: 800;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .floating-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+        }
     </style>
 </head>
 <body>
+    <a href="../index.html" class="floating-home" aria-label="Home">⌂</a>
     <div class="shell">
         <div class="text-center mb-5">
             <p class="text-uppercase text-info mb-1" style="letter-spacing: 0.2rem;">Buddha</p>
