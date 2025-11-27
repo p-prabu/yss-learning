@@ -6,106 +6,86 @@
     <title>Meditation Journey</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75)), url("asset/moonstill.png") center/cover fixed;
-            color: white;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: url("asset/moonstill.png") center/cover fixed;
+            color: #f8fafc;
             min-height: 100vh;
         }
-        .container {
-            padding-top: 40px;
-            padding-bottom: 40px;
+        .wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 18px 32px;
         }
-        .card {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            margin-bottom: 20px;
+        .shell {
+            background: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            backdrop-filter: none;
+            border-radius: 18px;
+            padding: 22px 20px;
+            box-shadow: 0 10px 18px rgba(0,0,0,0.2);
         }
-        .card-title {
-            color: white;
-        }
-        .card-text {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .btn-primary {
-            background-color: #f8f9fa;
-            color: #3f2b96;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #e9ecef;
-            color: #3f2b96;
-        }
-        .btn-primary.disabled {
-            background-color: #6c757d;
-            color: #f8f9fa;
-            border: none;
-        }
-        /* Modern bookshelf styling */
-        .content-shell {
-            backdrop-filter: blur(10px);
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
-            padding: 30px;
-        }
-        .shelf-title {
-            letter-spacing: 0.25rem;
+        .eyebrow {
             text-transform: uppercase;
-            color: #e0e7ff;
-            font-size: 0.85rem;
+            letter-spacing: 0.14em;
+            font-size: 11px;
+            color: #e5e7eb;
+            margin-bottom: 6px;
+            font-weight: 700;
         }
-        .category-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 18px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        h1 {
+            font-size: 28px;
+            margin: 0 0 6px;
+            color: #f8fafc;
+            font-weight: 800;
         }
-        .book-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 14px;
-            padding: 16px;
+        .tagline {
+            color: #e5e7eb;
+            margin: 0 0 14px;
+            font-size: 14px;
+        }
+        ul.library {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        ul.library li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
             display: flex;
             justify-content: space-between;
-            gap: 10px;
-            align-items: center;
+            gap: 12px;
+            align-items: baseline;
         }
-        .book-card h6 {
-            margin: 0;
-            color: #f8fafc;
+        ul.library li:last-child {
+            border-bottom: none;
+        }
+        .title {
+            color: #f9fafb;
             font-weight: 700;
+            margin: 0;
         }
-        .book-card p {
+        .meta {
+            color: #d1d5db;
+            font-size: 13px;
             margin: 4px 0 0;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.92rem;
         }
-        .badge-pill {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 999px;
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            color: #f8fafc;
-        }
-        .book-link {
+        .open {
             color: #0f172a;
             background: #f8fafc;
+            padding: 6px 12px;
             border-radius: 10px;
-            padding: 8px 14px;
             font-weight: 700;
             text-decoration: none;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
         }
-        .book-link:hover {
-            background: #e2e8f0;
-            color: #0f172a;
+        .open:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 18px rgba(255,255,255,0.15);
         }
         .floating-home {
             position: fixed;
@@ -131,87 +111,50 @@
 <body>
     <a href="./index.html" class="floating-home" aria-label="Home">⌂</a>
 
-    <div id="content">
-        <div class="container">
-            <div class="content-shell">
-                <div class="text-center mb-4">
-                    <div class="shelf-title">Library</div>
-                    <h1 class="display-5 fw-bold">Meditation Journeys</h1>
-                    <p class="lead text-light">Curated readings and practices across traditions.</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="category-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="mb-0">YSS</h5>
-                                <span class="badge-pill">2 volumes</span>
-                            </div>
-                            <div class="book-card">
-                                <div>
-                                    <h6>Part 1: The Basics</h6>
-                                    <p>Raja Yoga foundations and breath practice.</p>
-                                </div>
-                                <a class="book-link" href="YSS/part-1.html">Open</a>
-                            </div>
-                            <div class="book-card">
-                                <div>
-                                    <h6>Part 2: பதஞ்சலியின் அஷ்டாங்க யோகம்</h6>
-                                    <p>நிலவு நிசப்த பயணம் — 8 limbs in focus.</p>
-                                </div>
-                                <a class="book-link" href="YSS/Part-2.html">Open</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="category-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="mb-0">Osho</h5>
-                                <span class="badge-pill">2 volumes</span>
-                            </div>
-                            <div class="book-card">
-                                <div>
-                                    <h6>4-Stage Meditation</h6>
-                                    <p>Dynamic stages to shake off tension.</p>
-                                </div>
-                                <a class="book-link" href="Osho/4stage.html">Open</a>
-                            </div>
-                            <div class="book-card">
-                                <div>
-                                    <h6>4-Minute Reset</h6>
-                                    <p>Quick practice to center and reset.</p>
-                                </div>
-                                <a class="book-link" href="Osho/4.html">Open</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="category-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="mb-0">Patanjali</h5>
-                                <span class="badge-pill">Coming soon</span>
-                            </div>
-                            <div class="flex-grow-1 d-flex align-items-center justify-content-center text-center text-light opacity-75" style="min-height:120px;">
-                                New readings will appear here.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="category-card">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="mb-0">Buddha</h5>
-                                <span class="badge-pill">1 volume</span>
-                            </div>
-                            <div class="book-card">
-                                <div>
-                                    <h6>18-Part Journey</h6>
-                                    <p>கவனத்தின் 18 தளங்கள் — புத்தர் பாதை.</p>
-                                </div>
-                                <a class="book-link" href="Buddha/18parts.html">Open</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="wrap">
+        <div class="shell">
+            <div class="text-start">
+                <div class="eyebrow">Library</div>
+                <h1>Meditation Journeys</h1>
+                <p class="tagline">Simple links to your readings and practices.</p>
             </div>
+            <ul class="library">
+                <li>
+                    <div>
+                        <p class="title">YSS — Part 1: The Basics</p>
+                        <p class="meta">Raja Yoga foundations and breath practice.</p>
+                    </div>
+                    <a class="open" href="YSS/part-1.html">Open</a>
+                </li>
+                <li>
+                    <div>
+                        <p class="title">YSS — Part 2: பதஞ்சலியின் அஷ்டாங்க யோகம்</p>
+                        <p class="meta">நிலவு நிசப்த பயணம் — 8 limbs in focus.</p>
+                    </div>
+                    <a class="open" href="YSS/Part-2.html">Open</a>
+                </li>
+                <li>
+                    <div>
+                        <p class="title">Osho — 4-Stage Meditation</p>
+                        <p class="meta">Dynamic stages to shake off tension.</p>
+                    </div>
+                    <a class="open" href="Osho/4stage.html">Open</a>
+                </li>
+                <li>
+                    <div>
+                        <p class="title">Patanjali — Coming Soon</p>
+                        <p class="meta">New readings will appear here.</p>
+                    </div>
+                    <a class="open" href="#" aria-disabled="true" style="pointer-events:none; opacity:0.5;">Locked</a>
+                </li>
+                <li>
+                    <div>
+                        <p class="title">Buddha — 18-Part Journey</p>
+                        <p class="meta">கவனத்தின் 18 தளங்கள் — புத்தர் பாதை.</p>
+                    </div>
+                    <a class="open" href="Buddha/18parts.html">Open</a>
+                </li>
+            </ul>
         </div>
     </div>
 
