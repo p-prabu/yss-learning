@@ -53,16 +53,30 @@
             padding: 0;
             margin: 0;
         }
+        .category {
+            margin-bottom: 16px;
+        }
+        .category-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin: 0 0 6px;
+            color: #f8fafc;
+        }
         ul.library li {
             padding: 12px 0;
             border-bottom: 1px solid rgba(255,255,255,0.12);
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            align-items: baseline;
+            display: block;
         }
         ul.library li:last-child {
             border-bottom: none;
+        }
+        .item-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .item-link:hover .title {
+            text-decoration: underline;
         }
         .title {
             color: #f9fafb;
@@ -118,43 +132,59 @@
                 <h1>Meditation Journeys</h1>
                 <p class="tagline">Simple links to your readings and practices.</p>
             </div>
-            <ul class="library">
-                <li>
-                    <div>
-                        <p class="title">YSS — Part 1: The Basics</p>
-                        <p class="meta">Raja Yoga foundations and breath practice.</p>
-                    </div>
-                    <a class="open" href="YSS/part-1.html">Open</a>
-                </li>
-                <li>
-                    <div>
-                        <p class="title">YSS — Part 2: பதஞ்சலியின் அஷ்டாங்க யோகம்</p>
-                        <p class="meta">நிலவு நிசப்த பயணம் — 8 limbs in focus.</p>
-                    </div>
-                    <a class="open" href="YSS/Part-2.html">Open</a>
-                </li>
-                <li>
-                    <div>
-                        <p class="title">Osho — 4-Stage Meditation</p>
-                        <p class="meta">Dynamic stages to shake off tension.</p>
-                    </div>
-                    <a class="open" href="Osho/4stage.html">Open</a>
-                </li>
-                <li>
-                    <div>
-                        <p class="title">Patanjali — Coming Soon</p>
-                        <p class="meta">New readings will appear here.</p>
-                    </div>
-                    <a class="open" href="#" aria-disabled="true" style="pointer-events:none; opacity:0.5;">Locked</a>
-                </li>
-                <li>
-                    <div>
-                        <p class="title">Buddha — 18-Part Journey</p>
-                        <p class="meta">கவனத்தின் 18 தளங்கள் — புத்தர் பாதை.</p>
-                    </div>
-                    <a class="open" href="Buddha/18parts.html">Open</a>
-                </li>
-            </ul>
+            <div class="category">
+                <p class="category-title">YSS</p>
+                <ul class="library">
+                    <li>
+                        <a class="item-link" href="YSS/part-1/part-1.html">
+                            <p class="title">Part 1: The Basics</p>
+                            <p class="meta">Raja Yoga foundations and breath practice.</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="item-link" href="YSS/part-2/part-2.html">
+                            <p class="title">Part 2: பதஞ்சலியின் அஷ்டாங்க யோகம்</p>
+                            <p class="meta">நிலவு நிசப்த பயணம் — 8 limbs in focus.</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <p class="category-title">Osho</p>
+                <ul class="library">
+                    <li>
+                        <a class="item-link" href="Osho/4stage.html">
+                            <p class="title">4-Stage Meditation</p>
+                            <p class="meta">Dynamic stages to shake off tension.</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <p class="category-title">Patanjali</p>
+                <ul class="library">
+                    <li>
+                        <span class="item-link" style="pointer-events:none; opacity:0.7;">
+                            <p class="title">Coming Soon</p>
+                            <p class="meta">New readings will appear here.</p>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="category">
+                <p class="category-title">Buddha</p>
+                <ul class="library">
+                    <li>
+                        <a class="item-link" href="Buddha/18parts.html">
+                            <p class="title">18-Part Journey</p>
+                            <p class="meta">கவனத்தின் 18 தளங்கள் — புத்தர் பாதை.</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
