@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Works</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'desk-ink': '#1F2933',
+                        'desk-cream': '#F8F5F0',
+                        'desk-blue': '#2563EB',
+                        'desk-sand': '#E1D6C5',
+                        'desk-lime': '#84CC16',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: radial-gradient(circle at 20% 20%, #f5efe4 0%, #f1ebdf 35%, #e5dccb 100%); color: #1F2933; }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-desk-blue selection:text-white">
+    <a href="../index.html" class="fixed bottom-4 right-4 bg-desk-ink text-white rounded-full px-4 py-2 shadow-lg" aria-label="Home">⌂</a>
+
+    <div class="max-w-5xl mx-auto px-4 py-10">
+        <div class="bg-white/80 backdrop-blur rounded-2xl shadow-sm border border-desk-sand p-6 lg:p-8">
+            <div class="flex items-start gap-3 mb-6">
+                <div class="w-12 h-12 rounded-xl bg-desk-ink text-white flex items-center justify-center text-xl font-bold">📂</div>
+                <div>
+                    <p class="text-xs font-bold text-desk-blue uppercase tracking-wide">Desk Hub</p>
+                    <h1 class="font-serif text-3xl text-desk-ink">Office Works</h1>
+                    <p class="text-sm text-gray-600 mt-1">Quick tabs to jump between email replies, daily to-dos, and OKRs.</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-6 items-start">
+                <div class="lg:col-span-3 space-y-3">
+                    <div class="rounded-xl border border-desk-sand bg-white/90 p-4 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-bold text-desk-ink uppercase tracking-wide">Chapters</h3>
+                            <span class="text-xs text-gray-500">Book view</span>
+                        </div>
+                        <div class="space-y-2">
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-chapter-tab="email">Email</button>
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-chapter-tab="todo">To-do</button>
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-chapter-tab="okr">OKR</button>
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-chapter-tab="meeting">Meeting</button>
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-chapter-tab="project">Project</button>
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-chapter-tab="leader">Leader</button>
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-chapter-tab="learning">Learning</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 space-y-4">
+                    <div data-content-panel="email|affirmation" class="space-y-4">
+                        <div class="bg-white border border-desk-sand rounded-xl p-5 shadow-sm">
+                            <h3 class="text-lg font-bold text-desk-ink mb-3 flex items-center gap-2">
+                                <span class="bg-desk-blue/10 text-desk-blue font-semibold px-3 py-1 rounded-full text-xs uppercase tracking-wide">சங்கல்பம்</span>
+                                Affirmation
+                            </h3>
+                            <p class="text-base md:text-lg italic text-desk-ink leading-relaxed">
+                                என் நேரமும் கவனமும் என் முழுக் கட்டுப்பாட்டில் உள்ளன. நான் வேலைகளைச் சேர விடுவதில்லை; உடனடியாக முடிவெடுக்கிறேன். நான் என் இன்பாக்ஸைப் பார்க்கும் போது: 'இது என்ன?' மற்றும் 'நான் என்ன செய்ய வேண்டும்?' என்று கேட்கிறேன்.<br><br>
+                                2 நிமிடங்களுக்குக் குறைவாக இருந்தால், அதை இப்போதே செய்கிறேன். பின்னர் செய்ய வேண்டியவை என்றால், அதை செயல், வாசிப்பு அல்லது காத்திருப்பு என ஒழுங்குபடுத்துகிறேன்.<br><br>
+                                என் இன்பாக்ஸ் ஒரு சேமிப்பு கிடங்கு அல்ல; அது ஒரு முடிவெடுக்கும் இடம். நான் தெளிவுடன் செயல்படுகிறேன், நோக்கத்துடன் ஒழுங்கமைக்கிறேன்.
+                            </p>
+                        </div>
+                    </div>
+                    <div data-content-panel="email|disciplines" class="space-y-4 hidden">
+                        <div class="bg-white border border-desk-sand rounded-xl p-5 shadow-sm">
+                            <h3 class="text-lg font-bold text-desk-ink mb-3">The 5 Essential Email Categories</h3>
+                            <p class="text-sm text-gray-600 mb-3">Sort every email into one of these to keep the inbox flowing:</p>
+                            <ul class="space-y-3 text-sm text-gray-800 leading-relaxed">
+                                <li><span class="font-semibold text-desk-ink">Action:</span> Emails that require you to perform a specific task, respond, or complete an assignment. <span class="text-gray-600">Rule: Anything that takes more than 2 minutes goes here.</span></li>
+                                <li><span class="font-semibold text-desk-ink">Reading:</span> Information you want to consume for knowledge or interest but that requires no immediate action or reply.</li>
+                                <li><span class="font-semibold text-desk-ink">Waiting:</span> Messages where you delegated work or are awaiting a response/information before you can proceed.</li>
+                                <li><span class="font-semibold text-desk-ink">Archive:</span> Keep-for-reference emails or compliance items; no action needed now, but store them.</li>
+                                <li><span class="font-semibold text-desk-ink">Trash:</span> Not needed, spam, or subscriptions to cancel—delete immediately.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-5 shadow-sm">
+                            <h3 class="text-lg font-bold text-desk-ink mb-3">The Key Disciplines</h3>
+                            <p class="text-sm text-gray-600 mb-3">Mental rules to keep the system strict and simple while you process.</p>
+                            <ul class="space-y-3 text-sm text-gray-800 leading-relaxed">
+                                <li><span class="font-semibold text-desk-ink">Thinking (Clarification):</span> Do not just scan; understand. DIFFERENTIATE between simple information and required tasks. Ask yourself: "What is this?" and "What do I need to do?"</li>
+                                <li><span class="font-semibold text-desk-ink">Organizing (Sorting):</span> Once you have thought about the email, immediately categorize it into one of the designated folders (Action, Reading, Waiting). Do not leave it in the Inbox.</li>
+                                <li><span class="font-semibold text-desk-ink">Execution Strategies:</span>
+                                    <div class="mt-2 space-y-2">
+                                        <p class="pl-4 border-l-4 border-desk-blue/30"><strong>The 2-Minute Rule:</strong> If an email takes less than two minutes to answer or handle, do it immediately. Do not sort it.</p>
+                                        <p class="pl-4 border-l-4 border-desk-blue/30"><strong>The Sort Rule:</strong> If it takes more than two minutes, move it to the Action folder to do later.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-content-panel="todo|affirmation" class="space-y-4 hidden">
+                        <div class="bg-white border border-desk-sand rounded-xl p-5 shadow-sm">
+                            <h3 class="text-lg font-bold text-desk-ink mb-3 flex items-center gap-2">
+                                <span class="bg-desk-blue/10 text-desk-blue font-semibold px-3 py-1 rounded-full text-xs uppercase tracking-wide">உறுதிமொழி</span>
+                                தினசரி பணிப் பட்டியல் உறுதிமொழி (Daily To-Do List Affirmation)
+                            </h3>
+                            <p class="text-base md:text-lg italic text-desk-ink leading-relaxed">
+                                என் நேரமும் கவனமும் என் முழுக் கட்டுப்பாட்டில் உள்ளன. நான் வேலைகளைச் சேர விடுவதில்லை; உடனடியாக முடிவெடுக்கிறேன்.<br><br>
+                                தினமும் இரவில் உறங்கும் முன், அடுத்த நாளுக்கான வேலைகளைத் திட்டமிட்டு, அவற்றை என் பணிப் பட்டியலில் எழுதி வைக்கிறேன்.<br><br>
+                                தினமும் காலையில் தியானத்திற்குப் பிறகு, என் பணிப் பட்டியலைப் பார்க்கும்போது: 'இது என்ன?' மற்றும் 'நான் என்ன செய்ய வேண்டும்?' என்று தெளிவாகக் கேட்கிறேன்.
+                            </p>
+                        </div>
+                    </div>
+                    <div data-content-panel="okr|overview" class="space-y-4 hidden">
+                        <div class="p-4 rounded-lg bg-desk-cream border border-desk-sand">
+                            <p class="font-semibold text-desk-ink">Objective 1: Deliver a reliable onboarding experience</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>KR1: Reduce setup time from 25 mins to 10 mins.</li>
+                                <li>KR2: Cut activation drop-off on step 2 from 35% to 15%.</li>
+                                <li>KR3: Ship health dashboard by end of week 7.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white border border-desk-sand">
+                            <p class="font-semibold text-desk-ink">Objective 2: Strengthen customer trust</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>KR1: NPS improvement from 41 → 50.</li>
+                                <li>KR2: Weekly status sent to top 10 accounts with actions.</li>
+                                <li>KR3: Critical incidents per month &lt; 1 (rolling 90 days).</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-lg bg-desk-cream border border-desk-sand">
+                            <p class="font-semibold text-desk-ink">Objective 3: Operate efficiently</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>KR1: Cut cycle time from idea to release to &lt; 10 days.</li>
+                                <li>KR2: Improve forecast accuracy within ±5% for Q3.</li>
+                                <li>KR3: Team engagement score above 8.5/10.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-content-panel="meeting|overview" class="space-y-4 hidden">
+                        <div class="bg-desk-cream border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Prep Checklist</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Goal: decide, brainstorm, or update?</li>
+                                <li>Inputs: docs/metrics shared 24h ahead.</li>
+                                <li>Roles: owner, timekeeper, note-taker set.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Agenda</h3>
+                            <ol class="list-decimal list-inside space-y-1">
+                                <li>Context (2m)</li>
+                                <li>Options & tradeoffs (8m)</li>
+                                <li>Decision & owners (5m)</li>
+                                <li>Next steps & deadlines (5m)</li>
+                            </ol>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Notes</h3>
+                            <p class="text-gray-700">Decisions, owners, due dates:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><span class="font-semibold text-desk-ink">Decision:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Owner:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Due:</span> __________</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-content-panel="project|overview" class="space-y-4 hidden">
+                        <div class="bg-desk-cream border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Milestones</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><span class="font-semibold text-desk-ink">Kickoff:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">MVP complete:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Launch:</span> __________</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Risks & Mitigations</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><span class="font-semibold text-desk-ink">Risk:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Impact:</span> Low / Med / High</li>
+                                <li><span class="font-semibold text-desk-ink">Mitigation:</span> __________</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Owners</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><span class="font-semibold text-desk-ink">PM:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Design:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Eng Lead:</span> __________</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-content-panel="leader|overview" class="space-y-4 hidden">
+                        <div class="bg-desk-cream border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">One-on-One Focus</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Wins since last sync</li>
+                                <li>Blocks or frustrations</li>
+                                <li>Growth goal check-in</li>
+                                <li>Support needed from me</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Coaching Notes</h3>
+                            <p class="text-gray-700">Key themes to reinforce:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Clarity over speed when stakes are high.</li>
+                                <li>Bias to ship small; celebrate learning.</li>
+                                <li>Ask “who else needs to know?” before closing.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Team Health Pulse</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><span class="font-semibold text-desk-ink">Morale:</span> 😊 / 😐 / 😟</li>
+                                <li><span class="font-semibold text-desk-ink">Workload:</span> Light / Balanced / Heavy</li>
+                                <li><span class="font-semibold text-desk-ink">Risks:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Actions:</span> __________</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-content-panel="learning|overview" class="space-y-4 hidden">
+                        <div class="bg-desk-cream border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Focus Topics</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Skill 1: __________</li>
+                                <li>Skill 2: __________</li>
+                                <li>Skill 3: __________</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Reading Queue</h3>
+                            <ol class="list-decimal list-inside space-y-1">
+                                <li>Article / Book: __________</li>
+                                <li>Article / Book: __________</li>
+                                <li>Article / Book: __________</li>
+                            </ol>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-4">
+                            <h3 class="text-base font-bold text-desk-ink mb-2">Practice & Notes</h3>
+                            <p class="text-gray-700">Key takeaways and drills:</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><span class="font-semibold text-desk-ink">Insight:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Action to practice:</span> __________</li>
+                                <li><span class="font-semibold text-desk-ink">Measure of progress:</span> __________</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3 space-y-3">
+                    <div class="rounded-xl border border-desk-sand bg-white/90 p-4 shadow-sm">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-bold text-desk-ink uppercase tracking-wide">Pages</h3>
+                            <span class="text-xs text-gray-500">Per chapter</span>
+                        </div>
+                        <div class="space-y-2" data-page-group="email">
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="affirmation" data-default>Affirmation</button>
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-page-tab="disciplines">Disciplines</button>
+                        </div>
+                        <div class="space-y-2 hidden" data-page-group="todo">
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="affirmation" data-default>Affirmation</button>
+                        </div>
+                        <div class="space-y-2 hidden" data-page-group="okr">
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="overview" data-default>Overview</button>
+                        </div>
+                        <div class="space-y-2 hidden" data-page-group="meeting">
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="overview" data-default>Overview</button>
+                        </div>
+                        <div class="space-y-2 hidden" data-page-group="project">
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="overview" data-default>Overview</button>
+                        </div>
+                        <div class="space-y-2 hidden" data-page-group="leader">
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="overview" data-default>Overview</button>
+                        </div>
+                        <div class="space-y-2 hidden" data-page-group="learning">
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="overview" data-default>Overview</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chapterButtons = document.querySelectorAll('[data-chapter-tab]');
+        const pageGroups = document.querySelectorAll('[data-page-group]');
+        const pageButtons = document.querySelectorAll('[data-page-tab]');
+        const contentPanels = document.querySelectorAll('[data-content-panel]');
+
+        function switchChapter(chapter, pageOverride) {
+            chapterButtons.forEach(btn => {
+                const isActive = btn.getAttribute('data-chapter-tab') === chapter;
+                btn.classList.toggle('bg-desk-ink', isActive);
+                btn.classList.toggle('text-white', isActive);
+                btn.classList.toggle('shadow-sm', isActive);
+                btn.classList.toggle('bg-gray-100', !isActive);
+                btn.classList.toggle('text-gray-700', !isActive);
+            });
+
+            pageGroups.forEach(group => {
+                const isShow = group.getAttribute('data-page-group') === chapter;
+                group.classList.toggle('hidden', !isShow);
+            });
+
+            const activeGroup = document.querySelector(`[data-page-group="${chapter}"]`);
+            if (!activeGroup) return;
+            const defaultBtn = activeGroup.querySelector('[data-page-tab][data-default]');
+            const firstBtn = activeGroup.querySelector('[data-page-tab]');
+            const targetPage = pageOverride || (defaultBtn ? defaultBtn.getAttribute('data-page-tab') : firstBtn?.getAttribute('data-page-tab'));
+            if (targetPage) {
+                switchPage(chapter, targetPage);
+            }
+        }
+
+        function switchPage(chapter, page) {
+            const group = document.querySelector(`[data-page-group="${chapter}"]`);
+            if (group) {
+                group.querySelectorAll('[data-page-tab]').forEach(btn => {
+                    const isActive = btn.getAttribute('data-page-tab') === page;
+                    btn.classList.toggle('bg-desk-ink', isActive);
+                    btn.classList.toggle('text-white', isActive);
+                    btn.classList.toggle('shadow-sm', isActive);
+                    btn.classList.toggle('bg-gray-100', !isActive);
+                    btn.classList.toggle('text-gray-700', !isActive);
+                });
+            }
+
+            contentPanels.forEach(panel => {
+                const [panelChapter, panelPage] = panel.getAttribute('data-content-panel').split('|');
+                const isShow = panelChapter === chapter && panelPage === page;
+                panel.classList.toggle('hidden', !isShow);
+            });
+        }
+
+        switchChapter('email', 'affirmation');
+
+        chapterButtons.forEach(btn => {
+            btn.addEventListener('click', () => switchChapter(btn.getAttribute('data-chapter-tab')));
+        });
+
+        pageButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const group = btn.closest('[data-page-group]');
+                if (!group) return;
+                const chapter = group.getAttribute('data-page-group');
+                switchChapter(chapter, btn.getAttribute('data-page-tab'));
+            });
+        });
+    </script>
+</body>
+</html>
