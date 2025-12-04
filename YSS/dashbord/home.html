@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YSS Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans Tamil', sans-serif; background: radial-gradient(circle at 20% 20%, #f7f2e9 0%, #f0e9dc 40%, #e6dccb 100%); }
+    </style>
+</head>
+<body class="antialiased">
+    <a href="../../index.html" class="fixed bottom-4 right-4 bg-gray-900 text-white rounded-full px-4 py-2 shadow-lg hover:bg-gray-800" aria-label="Home">⌂</a>
+
+    <div class="max-w-5xl mx-auto px-4 py-10 space-y-6">
+        <header class="space-y-2">
+            <p class="text-xs font-semibold text-amber-700 uppercase tracking-[0.18em]">YSS Dashboard</p>
+            <p class="text-sm text-gray-600">சங்கல்பம், தியானம் — இங்கே இருந்து நேரடியாக திறக்கவும்.</p>
+        </header>
+
+        <div class="rounded-2xl border border-amber-100 bg-white/90 shadow-sm p-5 lg:p-6 space-y-4">
+            <div class="flex flex-wrap gap-2">
+                <button class="px-4 py-2 rounded-full text-sm font-semibold bg-gray-900 text-white shadow-sm" data-tab="affirmation">சங்கல்பம்</button>
+                <button class="px-4 py-2 rounded-full text-sm font-semibold bg-gray-100 text-gray-700" data-tab="meditation">தியானம்</button>
+            </div>
+
+            <div class="space-y-4">
+                <div data-panel="affirmation" class="rounded-xl border border-amber-100 bg-amber-50 p-5 shadow-sm cursor-pointer transition hover:shadow-md" data-src="../affirmation/affirmation.html" role="button" tabindex="0">
+                    <div class="flex items-start gap-3">
+                        <div class="w-11 h-11 rounded-full bg-amber-200 text-amber-900 flex items-center justify-center text-xl">🧭</div>
+                        <div class="flex-1 space-y-2">
+                            <h2 class="text-xl font-bold text-amber-900">சங்கல்பம் (Affirmations)</h2>
+                            <p class="text-sm text-gray-700">பரம்பொருள் சார்ந்த இரண்டு ஆழமான சங்கல்பங்கள் — உடலினை கடந்த ஆன்ம உணர்வு.</p>
+                            <p class="text-xs text-amber-800">இங்கே தட்டவும் திறக்க.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-panel="meditation" class="rounded-xl border border-emerald-100 bg-emerald-50 p-5 shadow-sm hidden cursor-pointer transition hover:shadow-md" data-src="../meditation/meditation.html" role="button" tabindex="0">
+                    <div class="flex items-start gap-3">
+                        <div class="w-11 h-11 rounded-full bg-emerald-200 text-emerald-900 flex items-center justify-center text-xl">🧘</div>
+                        <div class="flex-1 space-y-2">
+                            <h2 class="text-xl font-bold text-emerald-900">தியானம் (Meditation)</h2>
+                            <p class="text-sm text-gray-700">வார அட்டவணை, வழிநடத்தப்பட்ட தியானங்கள், மற்றும் துவக்க நிலை காணொளி.</p>
+                            <p class="text-xs text-emerald-800">இங்கே தட்டவும் திறக்க.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+                <iframe id="yss-viewer" class="w-full h-[70vh]" src="" title="YSS content" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabButtons = document.querySelectorAll('[data-tab]');
+        const panels = document.querySelectorAll('[data-panel]');
+        const viewer = document.getElementById('yss-viewer');
+
+        function switchTab(tab) {
+            tabButtons.forEach(btn => {
+                const active = btn.getAttribute('data-tab') === tab;
+                btn.classList.toggle('bg-gray-900', active);
+                btn.classList.toggle('text-white', active);
+                btn.classList.toggle('shadow-sm', active);
+                btn.classList.toggle('bg-gray-100', !active);
+                btn.classList.toggle('text-gray-700', !active);
+            });
+            panels.forEach(panel => {
+                const show = panel.getAttribute('data-panel') === tab;
+                panel.classList.toggle('hidden', !show);
+            });
+            const activePanel = document.querySelector(`[data-panel="${tab}"]`);
+            if (activePanel && activePanel.dataset.src) {
+                viewer.src = activePanel.dataset.src;
+            }
+        }
+
+        switchTab('affirmation');
+        tabButtons.forEach(btn => btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab'))));
+        panels.forEach(panel => {
+            panel.addEventListener('click', () => switchTab(panel.getAttribute('data-panel')));
+            panel.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    switchTab(panel.getAttribute('data-panel'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>
