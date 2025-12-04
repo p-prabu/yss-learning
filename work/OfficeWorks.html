@@ -80,17 +80,6 @@
                     </div>
                     <div data-content-panel="email|disciplines" class="space-y-4 hidden">
                         <div class="bg-white border border-desk-sand rounded-xl p-5 shadow-sm">
-                            <h3 class="text-lg font-bold text-desk-ink mb-3">The 5 Essential Email Categories</h3>
-                            <p class="text-sm text-gray-600 mb-3">Sort every email into one of these to keep the inbox flowing:</p>
-                            <ul class="space-y-3 text-sm text-gray-800 leading-relaxed">
-                                <li><span class="font-semibold text-desk-ink">Action:</span> Emails that require you to perform a specific task, respond, or complete an assignment. <span class="text-gray-600">Rule: Anything that takes more than 2 minutes goes here.</span></li>
-                                <li><span class="font-semibold text-desk-ink">Reading:</span> Information you want to consume for knowledge or interest but that requires no immediate action or reply.</li>
-                                <li><span class="font-semibold text-desk-ink">Waiting:</span> Messages where you delegated work or are awaiting a response/information before you can proceed.</li>
-                                <li><span class="font-semibold text-desk-ink">Archive:</span> Keep-for-reference emails or compliance items; no action needed now, but store them.</li>
-                                <li><span class="font-semibold text-desk-ink">Trash:</span> Not needed, spam, or subscriptions to cancel—delete immediately.</li>
-                            </ul>
-                        </div>
-                        <div class="bg-white border border-desk-sand rounded-xl p-5 shadow-sm">
                             <h3 class="text-lg font-bold text-desk-ink mb-3">The Key Disciplines</h3>
                             <p class="text-sm text-gray-600 mb-3">Mental rules to keep the system strict and simple while you process.</p>
                             <ul class="space-y-3 text-sm text-gray-800 leading-relaxed">
@@ -103,6 +92,37 @@
                                     </div>
                                 </li>
                             </ul>
+                        </div>
+                        <div class="bg-white border border-desk-sand rounded-xl p-5 shadow-sm">
+                            <h3 class="text-lg font-bold text-desk-ink mb-3">The 5 Essential Email Categories</h3>
+                            <p class="text-sm text-gray-600 mb-3">Sort every email into one of these to keep the inbox flowing:</p>
+                            <ul class="space-y-3 text-sm text-gray-800 leading-relaxed">
+                                <li><span class="font-semibold text-desk-ink">Action:</span> Emails that require you to perform a specific task, respond, or complete an assignment. <span class="text-gray-600">Rule: Anything that takes more than 2 minutes goes here.</span></li>
+                                <li><span class="font-semibold text-desk-ink">Reading:</span> Information you want to consume for knowledge or interest but that requires no immediate action or reply.</li>
+                                <li><span class="font-semibold text-desk-ink">Waiting:</span> Messages where you delegated work or are awaiting a response/information before you can proceed.</li>
+                                <li><span class="font-semibold text-desk-ink">Archive:</span> Keep-for-reference emails or compliance items; no action needed now, but store them.</li>
+                                <li><span class="font-semibold text-desk-ink">Trash:</span> Not needed, spam, or subscriptions to cancel—delete immediately.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-content-panel="email|bcc" class="space-y-4 hidden">
+                        <div class="bg-white border border-desk-sand rounded-xl p-5 shadow-sm">
+                            <h3 class="text-lg font-bold text-desk-ink mb-3">BCC → Waiting Folder Rule (Outlook 365)</h3>
+                            <p class="text-sm text-gray-600 mb-3">Set a rule so anything you BCC to yourself skips the Inbox and lands in Waiting.</p>
+                            <ol class="list-decimal list-inside space-y-3 text-sm text-gray-800 leading-relaxed">
+                                <li>File → Rules and Alerts → New Rule.</li>
+                                <li>Select “Apply rule on messages I receive” → Next.</li>
+                                <li>Check “from people or public group”; edit link and add your own email (e.g., you@yourdomain.com) → OK → Next.</li>
+                                <li>Check “move it to the specified folder”; click specified → choose your Waiting folder → OK. (Optional: also check “mark as read.”) → Next.</li>
+                                <li>Check exception “except if my name is in the To or Cc box” → Next.</li>
+                                <li>Name it “Waiting Folder” (or similar); ensure “Turn on this rule” is checked → Finish → Apply.</li>
+                            </ol>
+                            <p class="text-sm text-gray-700">Result: any email you BCC to yourself bypasses the Inbox and goes straight to Waiting.</p>
+                            <div class="bg-desk-cream border border-desk-sand rounded-lg p-3 text-sm text-desk-ink space-y-1">
+                                <p class="font-semibold">Review cadence</p>
+                                <p>Process the Waiting folder twice a week: Tuesday and Thursday.</p>
+                                <p>Block time in Outlook as a recurring slot so it actually happens. Be disciplined with the schedule.</p>
+                            </div>
                         </div>
                     </div>
                     <div data-content-panel="todo|affirmation" class="space-y-4 hidden">
@@ -265,6 +285,7 @@
                         <div class="space-y-2" data-page-group="email">
                             <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="affirmation" data-default>Affirmation</button>
                             <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-page-tab="disciplines">Disciplines</button>
+                            <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-gray-100 text-gray-700" data-page-tab="bcc">BCC</button>
                         </div>
                         <div class="space-y-2 hidden" data-page-group="todo">
                             <button class="w-full text-left px-3 py-2 rounded-lg text-sm font-semibold bg-desk-ink text-white shadow-sm" data-page-tab="affirmation" data-default>Affirmation</button>
