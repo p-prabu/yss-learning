@@ -28,12 +28,12 @@
             </div>
 
             <div class="space-y-4">
-                <div data-panel="affirmation" class="rounded-xl border border-amber-100 bg-amber-50 p-5 shadow-sm cursor-pointer transition hover:shadow-md" data-src="../affirmation/affirmation.html" role="button" tabindex="0">
+                <div data-panel="affirmation" class="rounded-xl border border-amber-100 bg-amber-50 p-5 shadow-sm cursor-pointer transition hover:shadow-md" data-src="../affirmation/affira.html" role="button" tabindex="0">
                     <div class="flex items-start gap-3">
                         <div class="w-11 h-11 rounded-full bg-amber-200 text-amber-900 flex items-center justify-center text-xl">🧭</div>
                         <div class="flex-1 space-y-2">
                             <h2 class="text-xl font-bold text-amber-900">சங்கல்பம் (Affirmations)</h2>
-                            <p class="text-sm text-gray-700">பரம்பொருள் சார்ந்த இரண்டு ஆழமான சங்கல்பங்கள் — உடலினை கடந்த ஆன்ம உணர்வு.</p>
+                            <p class="text-sm text-gray-700">பரம்பொருள் சார்ந்த சங்கல்பங்கள் — உடலினை கடந்த ஆன்ம உணர்வு.</p>
                             <p class="text-xs text-amber-800">இங்கே தட்டவும் திறக்க.</p>
                         </div>
                     </div>
@@ -53,27 +53,6 @@
             </div>
 
             <div class="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-                <div id="yss-inline-affirmation" class="p-5 space-y-4">
-                    <div class="bg-yellow-50 rounded-xl shadow-md p-6 border-l-8 border-yellow-500 relative overflow-hidden">
-                        <h3 class="text-xl font-bold text-yellow-800 mb-4 flex items-center">
-                            <span class="bg-yellow-200 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
-                            சங்கல்பம் (Affirmation)
-                        </h3>
-                        <p class="text-lg md:text-xl italic text-gray-800 font-serif leading-relaxed text-center px-4 md:px-12">
-                            "நான் உடலல்ல, இரத்தமல்ல, சக்தியல்ல, எண்ணங்களல்ல, மனமல்ல, அகந்தையல்ல, சூட்சும உடலுமல்ல; அவற்றை ஒளியூட்டி, அவை மாறிய போதிலும் தான் மாறாது இருக்கும் <span class="text-yellow-700 font-bold">அழிவற்ற ஆன்மாவே நான்</span>."
-                        </p>
-                    </div>
-                    <div class="bg-yellow-50 rounded-xl shadow-md p-6 border-l-8 border-yellow-500 relative overflow-hidden">
-                        <h3 class="text-xl font-bold text-yellow-800 mb-4 flex items-center">
-                            <span class="bg-yellow-200 text-yellow-800 rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
-                            சங்கல்பம் (Affirmation)
-                        </h3>
-                        <p class="text-lg md:text-xl italic text-gray-800 font-serif leading-relaxed text-center px-4 md:px-12">
-                            "நான் உடல் அல்ல. நான் கண்ணுக்குப் புலனாகாதவன். நான் பேரானந்தம். நான் பேரொளி. நான் பேரறிவு. நான் பேரன்பு. நான் இந்தப் பூவுலக வாழ்க்கையைக் கனவு கண்டுகொண்டிருக்கிற இந்தக் கனவு உடலில் உறைகின்றேன், நான் என்றுமே சாசுவதமான பரம்பொருள்.<br>
-                            நான் எல்லைக்குட்பட்ட அனைத்திற்கும் அப்பாற்பட்டவன்…நானே விண்மீன்கள், நானே அலைகள், நானே அனைத்தின் பேருயிர்; நானே எல்லா இதயங்களிலும் உள்ள நகைப்பொலி, நானே மலர்களின் முகங்களிலும் ஒவ்வோர் ஆன்மாவிலும் உள்ள புன்னகை. <span class="text-yellow-700 font-bold">எல்லாப் படைப்பையும் தாங்கும் பேரறிவும் மகா சக்தியும் நானே</span>."
-                        </p>
-                    </div>
-                </div>
                 <div id="yss-inline-meditation" class="p-5 space-y-4 hidden">
                     <h3 class="text-xl font-bold text-emerald-900">வார அட்டவணை</h3>
                     <p class="text-sm text-gray-700">திங்கள் முதல் ஞாயிறு வரை உங்கள் தியானப் பயிற்சிகளைப் பதிவு செய்யவும்.</p>
@@ -133,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                <iframe id="yss-viewer" class="w-full h-[70vh] hidden" src="" title="YSS content" loading="lazy"></iframe>
+                <iframe id="yss-viewer" class="w-full h-[70vh]" src="" title="YSS content" loading="lazy"></iframe>
             </div>
         </div>
     </div>
@@ -142,7 +121,6 @@
         const tabButtons = document.querySelectorAll('[data-tab]');
         const panels = document.querySelectorAll('[data-panel]');
         const viewer = document.getElementById('yss-viewer');
-        const inlineAffirmation = document.getElementById('yss-inline-affirmation');
         const inlineMeditation = document.getElementById('yss-inline-meditation');
 
         function switchTab(tab) {
@@ -159,14 +137,12 @@
                 panel.classList.toggle('hidden', !show);
             });
             const activePanel = document.querySelector(`[data-panel="${tab}"]`);
-            const isAffirmation = tab === 'affirmation';
             const isMeditation = tab === 'meditation';
 
-            inlineAffirmation.classList.toggle('hidden', !isAffirmation);
             inlineMeditation.classList.toggle('hidden', !isMeditation);
-            viewer.classList.toggle('hidden', isAffirmation || isMeditation);
+            viewer.classList.toggle('hidden', isMeditation);
 
-            if (!isAffirmation && !isMeditation && activePanel && activePanel.dataset.src) {
+            if (!isMeditation && activePanel && activePanel.dataset.src) {
                 viewer.src = activePanel.dataset.src;
             }
         }
